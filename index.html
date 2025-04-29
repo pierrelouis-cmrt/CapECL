@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maths • DS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Search overlay -->
+    <div id="search-overlay" class="search-overlay"></div>
+
+    <!-- Grille architecturale (Hidden on mobile via CSS) -->
+    <div class="architectural-grid">
+      <div class="grid-vertical"></div>
+    </div>
+
+    <!-- Header épuré et architectural -->
+    <!-- Uses flex-col on mobile, flex-row on md+ -->
+    <header id="main-header" class="header-container py-3 px-4 md:py-4 md:px-6">
+      <div
+        class="container mx-auto flex flex-col md:flex-row gap-3 md:gap-4 md:items-center justify-between"
+      >
+        <!-- Title/Brand Area -->
+        <div class="flex items-center gap-3 self-start md:self-center">
+          <h1 class="title text-lg md:text-xl tracking-tight">DS</h1>
+          <div class="h-4 md:h-5 w-px bg-black"></div>
+          <span class="mono text-xs">MATHÉMATIQUES</span>
+        </div>
+
+        <!-- Barre de recherche minimaliste -->
+        <!-- Takes full width on mobile, constrained on md+ -->
+        <div
+          class="search-container w-full md:flex-1 relative md:mx-12 md:max-w-xl order-3 md:order-2"
+        >
+          <!-- Wrapper for input and clear button -->
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              id="search"
+              placeholder="rechercher titre, tag, DS, thème, niveau..."
+              class="w-full px-3 search-input"
+              autocomplete="off"
+            />
+            <!-- Clear button -->
+            <span id="clear-search-btn" class="clear-search-btn">
+              <i class="fas fa-times text-xs"></i>
+            </span>
+          </div>
+          <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+
+        <!-- Date/Time Display -->
+        <!-- Centered on mobile when stacked, auto on md+ -->
+        <div
+          class="module module-dark mono self-center md:self-auto order-2 md:order-3"
+        >
+          <span id="datetime-display">--/--/---- --:--</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main with adjusted padding for mobile -->
+    <main class="container mx-auto px-4 md:px-6 py-8 md:py-12 flex-1">
+      <div class="mb-8 md:mb-12 flex justify-between items-center">
+        <div class="flex items-center gap-4 md:gap-6">
+          <div class="w-5 md:w-6 h-px bg-black"></div>
+          <h2 class="text-base md:text-lg tracking-tight mono">Collection</h2>
+        </div>
+      </div>
+
+      <div id="folder-container" class="mt-8 md:mt-12">
+        <!-- Loading Indicator architectural -->
+        <div id="loading-placeholder" class="text-center py-12 md:py-16">
+          <div class="loading-indicator mx-auto">
+            <div class="loading-line loading-h"></div>
+            <div class="loading-line loading-h"></div>
+            <div class="loading-line loading-h"></div>
+            <div class="loading-line loading-v"></div>
+            <div class="loading-line loading-v"></div>
+            <div class="loading-line loading-v"></div>
+          </div>
+          <p class="mt-6 md:mt-8 mono text-xs tracking-widest uppercase">
+            Chargement
+          </p>
+        </div>
+        <!-- Folders will be inserted here -->
+        <!-- Separators will be inserted here -->
+      </div>
+      <div
+        id="no-results"
+        class="text-center py-12 md:py-16 mono text-xs tracking-widest uppercase text-gray-400"
+        style="display: none"
+      >
+        Aucun résultat trouvé
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

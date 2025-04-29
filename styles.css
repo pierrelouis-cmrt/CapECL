@@ -1,0 +1,611 @@
+/* SYSTÈME TYPOGRAPHIQUE */
+:root {
+  --primary-font: "Inter", sans-serif;
+  --mono-font: "JetBrains Mono", monospace;
+  --grid-unit: 4px;
+  --line-weight: 1px;
+  --spacing-unit: 16px; /* Base spacing for desktop */
+
+  /* RATIO GÉOMÉTRIQUE */
+  --ratio: 1.414;
+
+  /* PALETTE "ARCHITECTURALE" */
+  --color-paper: #fcfcfc;
+  --color-ink: #222222;
+  --color-ink-light: #555555;
+  --color-stroke: #dedede;
+  --color-surface: #f5f5f5;
+  --color-hint: #888888;
+
+  /* ACCENTS SUBTILS */
+  --color-facile: rgba(0, 150, 100, 0.85);
+  --color-moyen: rgba(150, 120, 0, 0.85);
+  --color-difficile: rgba(150, 30, 30, 0.85);
+}
+
+/* STRUCTURE DE BASE */
+body {
+  font-family: var(--primary-font);
+  font-weight: 300;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* GRILLE ARCHITECTURALE - Hidden on smaller screens */
+.architectural-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  display: none; /* Hidden by default (mobile first) */
+}
+
+@media (min-width: 768px) {
+  /* Show grid only on md screens and up */
+  .architectural-grid {
+    display: block;
+  }
+}
+
+.grid-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.grid-vertical::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% / 3);
+  width: var(--line-weight);
+  background-color: var(--color-stroke);
+}
+
+.grid-vertical::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(100% / 3);
+  width: var(--line-weight);
+  background-color: var(--color-stroke);
+}
+
+/* TYPOGRAPHIE */
+h1,
+h2,
+h3,
+.title {
+  font-family: var(--mono-font);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--mono-font);
+  font-weight: 300;
+}
+
+/* HEADER */
+.header-container {
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  border-bottom: var(--line-weight) solid var(--color-ink);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(252, 252, 252, 0.8);
+}
+
+/* BARRE DE RECHERCHE */
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  font-family: var(--mono-font);
+  font-weight: 300;
+  letter-spacing: 0;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  border: var(--line-weight) solid var(--color-ink);
+  transition: all 0.25s;
+  padding-right: 36px; /* Increased space for clear button tap area */
+  /* Slightly larger padding for easier interaction */
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  -webkit-appearance: none; /* Remove iOS default styling */
+  appearance: none; /* Standard property */
+  border-radius: 0;
+  font-size: 16px; /* Prevent iOS zoom (use 16px as base) */
+}
+
+.search-input::placeholder {
+  color: var(--color-hint);
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: var(--color-paper);
+}
+
+/* Optional: Restore smaller font size on desktop if desired */
+@media (min-width: 768px) {
+  .search-input {
+    /* You can restore 14px (0.875rem) or keep 16px */
+    font-size: 0.875rem; /* Equivalent to text-sm if base font is 16px */
+  }
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 1px; /* Align with border */
+  top: 1px; /* Align with border */
+  bottom: 1px; /* Align with border */
+  width: 36px; /* Increased tap area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-hint);
+  cursor: pointer;
+  transition: color 0.2s;
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Non-clickable by default */
+}
+
+.clear-search-btn:hover {
+  color: var(--color-ink);
+}
+
+.search-input:not(:placeholder-shown) + .clear-search-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* SUGGESTIONS */
+.search-suggestions {
+  font-family: var(--primary-font);
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  background: var(--color-paper);
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: all 0.2s;
+  border: var(--line-weight) solid var(--color-ink);
+  border-top: none;
+  max-height: 60vh; /* Adjusted for mobile */
+  overflow-y: auto;
+}
+
+.search-suggestions.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.search-item {
+  border-bottom: var(--line-weight) solid var(--color-stroke);
+  transition: all 0.15s;
+}
+
+.search-item:hover,
+.active-suggestion {
+  background-color: var(--color-surface);
+}
+
+/* Search overlay */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.search-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* DOSSIERS */
+.folder-item {
+  position: relative;
+  border: var(--line-weight) solid var(--color-ink);
+  background-color: var(--color-paper);
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.3s ease-out;
+  margin-bottom: calc(var(--spacing-unit) * 1.2); /* Slightly reduced margin */
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .folder-item {
+    margin-bottom: calc(
+      var(--spacing-unit) * 1.618
+    ); /* Restore desktop margin */
+  }
+}
+
+.folder-item:hover {
+  background-color: var(--color-surface);
+}
+
+.folder-header {
+  cursor: pointer;
+  padding: calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 0.6)
+    calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 0.8);
+  border-bottom: var(--line-weight) dashed transparent;
+}
+
+@media (min-width: 768px) {
+  .folder-header {
+    padding: var(--spacing-unit);
+  }
+}
+
+.folder-open .folder-header {
+  border-bottom: var(--line-weight) dashed var(--color-stroke);
+}
+
+.folder-number {
+  font-family: var(--mono-font);
+  font-weight: 300;
+  font-size: calc(var(--spacing-unit) * 0.75); /* Slightly smaller */
+  position: relative;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .folder-number {
+    font-size: calc(var(--spacing-unit) * 0.8); /* Restore desktop size */
+  }
+}
+
+.folder-number::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  /* Removed right and width from base style */
+  height: 1px;
+  background-color: var(--color-ink);
+  display: none; /* Hide by default (mobile) */
+}
+
+@media (min-width: 768px) {
+  .folder-number::after {
+    display: block; /* Show on desktop */
+    right: -12px; /* Apply desktop position */
+    width: 8px; /* Apply desktop size */
+  }
+}
+
+.folder-title {
+  font-family: var(--primary-font);
+  font-weight: 400;
+  position: relative;
+  font-size: 0.95rem; /* Slightly smaller on mobile */
+}
+
+@media (min-width: 768px) {
+  .folder-title {
+    font-size: 1rem; /* Restore desktop size */
+  }
+}
+
+.folder-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  background-color: var(--color-surface);
+}
+
+.folder-open .folder-content {
+  max-height: 300px; /* Increased default max-height */
+}
+
+/* DIFFICULTY */
+.difficulty {
+  display: inline-block;
+  font-weight: 300;
+  font-size: 10px; /* Slightly smaller */
+  padding: 2px 5px;
+  text-transform: lowercase;
+  border: 1px solid currentColor;
+  color: var(--color-ink);
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+  .difficulty {
+    font-size: 11px; /* Restore desktop size */
+    padding: 2px 6px;
+  }
+}
+
+.difficulty-facile {
+  color: var(--color-facile);
+}
+
+.difficulty-moyen {
+  color: var(--color-moyen);
+}
+
+.difficulty-difficile {
+  color: var(--color-difficile);
+}
+
+/* FILES */
+.file-item {
+  transition: all 0.25s;
+  position: relative;
+  font-family: var(--primary-font);
+  font-weight: 300;
+  border-left: 4px solid transparent;
+}
+
+.file-item:hover {
+  border-left: 4px solid var(--color-ink);
+}
+
+.file-item a {
+  padding: 10px 16px; /* Adjusted padding */
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .file-item a {
+    padding: 12px 16px; /* Restore desktop padding */
+  }
+}
+
+/* FAVORITE ICON */
+.fav-icon {
+  position: relative;
+  z-index: 5;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.4;
+  color: var(--color-ink);
+}
+
+@media (min-width: 768px) {
+  .fav-icon {
+    height: 32px; /* Restore desktop size */
+    width: 32px; /* Restore desktop size */
+  }
+}
+
+.folder-item:hover .fav-icon {
+  opacity: 0.8;
+}
+
+.fav-icon:hover {
+  opacity: 1;
+}
+
+/* TOGGLE ICON */
+.toggle-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .toggle-icon {
+    display: block;
+  }
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-ink);
+  transition: all 0.2s;
+}
+
+.toggle-icon::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.toggle-icon::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.folder-open .toggle-icon::after {
+  opacity: 0;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/* FAVORITED ITEM */
+.favorite-item {
+  border-left: 3px solid var(--color-ink) !important;
+}
+
+.favorite-item .fav-icon {
+  opacity: 1;
+}
+
+/* LOADING INDICATOR */
+.loading-indicator {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.loading-line {
+  position: absolute;
+  background-color: var(--color-ink);
+  transition: all 0.2s;
+}
+
+.loading-h {
+  height: 1px;
+  left: 0;
+  right: 0;
+  animation: loadingPulse 1.5s infinite;
+}
+
+.loading-v {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+  animation: loadingPulse 1.5s infinite 0.2s;
+}
+
+.loading-h:nth-child(1) {
+  top: 25%;
+}
+.loading-h:nth-child(2) {
+  top: 50%;
+}
+.loading-h:nth-child(3) {
+  top: 75%;
+}
+.loading-v:nth-child(4) {
+  left: 25%;
+}
+.loading-v:nth-child(5) {
+  left: 50%;
+}
+.loading-v:nth-child(6) {
+  left: 75%;
+}
+
+@keyframes loadingPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ANIMATIONS SUBTILES */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+/* DESIGN MODULAIRE - COMPOSANTS */
+.module {
+  border: var(--line-weight) solid var(--color-ink);
+  padding: 4px 10px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  display: inline-block;
+  min-width: 150px;
+  text-align: center;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .module {
+    display: block;
+  }
+}
+
+.module-dark {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* SÉPARATEURS MINIMALISTES */
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0; /* Reduced margin */
+  transition: opacity 0.3s ease-out; /* Added transition */
+}
+
+@media (min-width: 768px) {
+  .separator {
+    margin: 2rem 0; /* Restore desktop margin */
+  }
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-stroke);
+}
+
+.separator-text {
+  padding: 0 0.75rem; /* Reduced padding */
+  font-family: var(--mono-font);
+  font-size: 9px; /* Slightly smaller */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-hint);
+}
+
+@media (min-width: 768px) {
+  .separator-text {
+    padding: 0 1rem; /* Restore desktop padding */
+    font-size: 10px; /* Restore desktop font size */
+  }
+}
+
+/* RESPONSIVITÉ - Base styles are mobile-first */
+/* Additional adjustments if needed */
+@media (max-width: 767px) {
+  :root {
+    --spacing-unit: 14px; /* Slightly smaller base spacing for mobile */
+  }
+  /* Adjust title sizes if needed */
+  h1.title {
+    font-size: 1.1rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+}
