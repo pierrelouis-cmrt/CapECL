@@ -519,13 +519,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function findMatchingDSIds(searchTerm) {
     return Object.entries(DS_CONFIG.metadata)
       .filter(([id, data]) => {
+        // Split search query into individual terms
         const searchTerms = searchTerm
           .toLowerCase()
           .split(" ")
           .filter((term) => term.length > 0);
         if (searchTerms.length === 0) return false;
 
+        // Check if EVERY search term matches SOMETHING in the DS data
         return searchTerms.every((term) => {
+          // Check DS number formats
           const dsFormats = [
             `ds${id}`,
             `ds ${id}`,
@@ -536,24 +539,30 @@ document.addEventListener("DOMContentLoaded", function () {
           const isNumberMatch = dsFormats.some((format) =>
             format.includes(term)
           );
+          // Check title
           const titleMatch = data.title.toLowerCase().includes(term);
+          // Check tags <<< THIS LINE HANDLES TAG SEARCHING
           const tagsMatch = data.tags.some((tag) =>
             tag.toLowerCase().includes(term)
           );
+          // Check topics
           const topicsMatch = data.topics.some((topic) =>
             topic.toLowerCase().includes(term)
           );
+          // Check difficulty
           const difficultyMatch = data.difficulty.toLowerCase().includes(term);
+
+          // Return true for the term if it matches ANY of these fields
           return (
             isNumberMatch ||
             titleMatch ||
-            tagsMatch ||
+            tagsMatch || // <-- Tags are correctly included here
             topicsMatch ||
             difficultyMatch
           );
         });
       })
-      .map(([id]) => id);
+      .map(([id]) => id); // Return only the IDs
   }
 
   // Apply actual filtering
