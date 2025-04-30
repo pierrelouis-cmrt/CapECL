@@ -233,12 +233,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       folderContainer.insertAdjacentHTML(
         "beforeend",
-        createSeparatorHTML("Tous les documents")
+        createSeparatorHTML("Documents")
       );
     } else if (favoriteItems.length === 0 && nonFavoriteItems.length > 0) {
       folderContainer.insertAdjacentHTML(
         "beforeend",
-        createSeparatorHTML("Documents")
+        createSeparatorHTML("Tous les documents")
       );
     }
 
