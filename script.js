@@ -569,9 +569,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (hideSuggest) {
       hideSearchSuggestions();
-      // Only reset activeSearch and overlay if we intend to finalize the search
-      activeSearch = searchTerm.length > 0;
-      toggleSearchOverlay(activeSearch);
+      // Finalize search: hide overlay so results are scrollable
+      activeSearch = false;
+      toggleSearchOverlay(false);
     }
   }
 
