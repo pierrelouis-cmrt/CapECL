@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="menu.css" />
   </head>
   <body class="flex flex-col min-h-screen">
     <!-- Search overlay -->
@@ -61,12 +62,13 @@
           <div id="search-suggestions" class="search-suggestions"></div>
         </div>
 
-        <!-- Date/Time Display -->
-        <!-- Centered on mobile when stacked, auto on md+ -->
-        <div
-          class="module module-dark mono self-center md:self-auto order-2 md:order-3"
-        >
-          <span id="datetime-display">--/--/---- --:--</span>
+        <!-- Hamburger Menu -->
+        <div class="hamburger order-2 md:order-3">
+          <div class="hamburger__container">
+            <span class="hamburger__top"></span>
+            <span class="hamburger__middle"></span>
+            <span class="hamburger__bottom"></span>
+          </div>
         </div>
       </div>
     </header>
@@ -106,6 +108,130 @@
         Aucun résultat trouvé
       </div>
     </main>
+
+    <!-- Fullscreen Menu Markup -->
+    <div class="menu">
+      <div class="menu__container">
+        <nav class="menu__nav">
+          <ul class="menu__list">
+            <li class="menu__item js-span">Pour les 1A</li>
+            <li class="menu__subtitle">DS Maths</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2024-2025</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2023-2024</a>
+            </li>
+            <li class="menu__subtitle">DS Physique</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2024-2025</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2023-2024</a>
+            </li>
+            <li class="menu__subtitle">Manuels</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Ellipses Maths PCSI</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Ellipses Physique PCSI</a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="menu__nav">
+          <ul class="menu__list">
+            <li class="menu__item js-span">Et les 2A</li>
+            <li class="menu__subtitle">DS Maths</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2024-2025</a>
+            </li>
+            <li class="menu__subtitle">DS Physique</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">2024-2025</a>
+            </li>
+            <li class="menu__subtitle">Manuels</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Ellipses Maths PC/PSI</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Ellipses Physique PC/PSI</a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="menu__nav">
+          <ul class="menu__list">
+            <li class="menu__item js-span">Ressources</li>
+            <li class="menu__subtitle">Manuels</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">D'autres éditions</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Google Drive
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__subtitle">Resources</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Liens Utiles</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">De la sup à la spé</a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Github
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Insta
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__subtitle">Accès rapide</li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">GitLab 1A
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">GitLab 2A
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Infocentre
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+            <li class="menu__item">
+              <a class="menu__link" href="#">Moodle
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="menu__sidebar">
+          <div class="menu__flip">
+            <div class="menu__copy">
+              Réalisé par
+              <a class="menu__external" href="https://www.instagram.com/bapt.bnl/" target="_blank" rel="noopener noreferrer">Baptiste</a>
+              et
+              <a class="menu__external" href="https://pierrelouis.net" target="_blank" rel="noopener noreferrer">Pierre-Louis</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__img">
+        <figure class="absolute-bg"></figure>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="menu.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

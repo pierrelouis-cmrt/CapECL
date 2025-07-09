@@ -164,14 +164,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchSuggestions = document.getElementById("search-suggestions");
   const searchOverlay = document.getElementById("search-overlay");
   const loadingPlaceholder = document.getElementById("loading-placeholder");
-  const dateTimeDisplay = document.getElementById("datetime-display");
   const clearSearchBtn = document.getElementById("clear-search-btn");
   const noResultsDiv = document.getElementById("no-results");
 
   // État
   let favorites = JSON.parse(localStorage.getItem("dsFavorites") || "[]");
   let lastScrollPosition = 0;
-  let dateTimeInterval;
   let activeSearch = false;
 
   // Initialisation avec délai simulé
@@ -183,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Setup
   initSearch();
   setupScrollEffects();
-  startDateTimeUpdate();
   setupFolderEventListeners();
 
   // --- Fonctions ---
@@ -701,29 +698,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ); // Use passive listener for scroll performance
   }
 
-  function updateDateTime() {
-    const now = new Date();
-    const dateOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    };
-    const timeOptions = { hour: "2-digit", minute: "2-digit" };
-    const dateString = now.toLocaleDateString("fr-FR", dateOptions);
-    const timeString = now.toLocaleTimeString("fr-FR", timeOptions);
-    dateTimeDisplay.textContent = `${dateString} ${timeString}`;
-  }
-
-  function startDateTimeUpdate() {
-    updateDateTime();
-    dateTimeInterval = setInterval(updateDateTime, 1000 * 30);
-  }
-
-  window.addEventListener("beforeunload", () => {
-    if (dateTimeInterval) {
-      clearInterval(dateTimeInterval);
-    }
-  });
 
   // Close suggestions on outside click (improved)
   document.addEventListener("click", (e) => {
