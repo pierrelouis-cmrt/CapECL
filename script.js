@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const favoriteItems = dsList.filter((item) => item.isFavorite);
     const nonFavoriteItems = dsList.filter((item) => !item.isFavorite);
 
-    // Add "Favoris" separator if needed
+    // Render favorites section first if any
     if (favoriteItems.length > 0) {
       folderContainer.insertAdjacentHTML(
         "beforeend",
@@ -225,28 +225,24 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Add "Tous les documents" or "Documents" separator if needed
-    if (
-      favoriteItems.length > 0 &&
-      nonFavoriteItems.length > 0 &&
-      filterIds === null
-    ) {
+    // Determine label for non-favorite section when needed
+    if (nonFavoriteItems.length > 0) {
+      let label;
+      if (filterIds === null) {
+        label = favoriteItems.length > 0 ? "Documents" : "Tous les documents";
+      } else {
+        label = favoriteItems.length > 0 ? "Autres résultats" : "Résultats";
+      }
       folderContainer.insertAdjacentHTML(
         "beforeend",
-        createSeparatorHTML("Documents")
+        createSeparatorHTML(label)
       );
-    } else if (favoriteItems.length === 0 && nonFavoriteItems.length > 0) {
-      folderContainer.insertAdjacentHTML(
-        "beforeend",
-        createSeparatorHTML("Tous les documents")
-      );
-    }
 
-    // Add non-favorite items
-    nonFavoriteItems.forEach((item) => {
-      createFolderHTML(item, delay);
-      delay += 40;
-    });
+      nonFavoriteItems.forEach((item) => {
+        createFolderHTML(item, delay);
+        delay += 40;
+      });
+    }
 
     // Show "No results" message if applicable
     noResultsDiv.style.display = dsList.length === 0 ? "block" : "none";
@@ -573,9 +569,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (hideSuggest) {
       hideSearchSuggestions();
-      // Only reset activeSearch and overlay if we intend to finalize the search
-      activeSearch = searchTerm.length > 0;
-      toggleSearchOverlay(activeSearch);
+      // Finalize search: hide overlay so results are scrollable
+      activeSearch = false;
+      toggleSearchOverlay(false);
     }
   }
 
