@@ -278,7 +278,9 @@
         transform: translateY(10px);
         transition: all 0.8s var(--transition);
         padding: 0.3rem 0;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
       }
 
       .menu__link:hover {
