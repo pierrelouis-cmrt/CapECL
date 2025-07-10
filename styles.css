@@ -161,6 +161,13 @@ h3,
   transform: translateY(-5px) rotate(-45deg);
 }
 
+/* Ensure the button stays above the overlay when open */
+.js-menu-open .hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
 /* BARRE DE RECHERCHE */
 .search-input-wrapper {
   position: relative;
