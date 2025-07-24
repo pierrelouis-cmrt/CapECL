@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "titre": "Titre du DS",
+    "description": "Un exemple de description"
+  },
+  {
+    "id": 2,
+    "titre": "Un DS sans description",
+    "description": ""
+  }
+]

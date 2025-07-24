@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "titre": "DS 1 - Bases Mathématiques",
+    "description": "Bases mathématiques, nombres complexes, logique et raisonnement de première année"
+  },
+  {
+    "id": 2,
+    "titre": "DS 2 - Analyse et Fonctions",
+    "description": "Fonctions, limites, continuité, dérivabilité"
+  },
+  {
+    "id": 3,
+    "titre": "DS 3 - Suites et Séries",
+    "description": "Suites numériques, convergence, séries numériques"
+  },
+  {
+    "id": 4,
+    "titre": "DS 4 - Algèbre Linéaire",
+    "description": "Espaces vectoriels, applications linéaires, matrices"
+  },
+  {
+    "id": 5,
+    "titre": "DS 5 - Intégration",
+    "description": "Calcul intégral, primitives, intégration par parties"
+  }
+]

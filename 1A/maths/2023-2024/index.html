@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapECL</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Built CSS -->
+    <link rel="stylesheet" href="../../../src/output.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Grille architecturale (Hidden on mobile via CSS) -->
+    <div class="architectural-grid">
+      <div class="grid-vertical"></div>
+    </div>
+
+    <main class="container mx-auto px-4 md:px-6 py-8 md:py-12 flex-1">
+      <!-- -------- PATH / BREADCRUMB -------- -->
+      <nav class="breadcrumb mb-8 md:mb-12" aria-label="Fil d'Ariane">
+        <a href="/" class="breadcrumb-item is-link">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+            <path
+              d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+            ></path>
+          </svg>
+          Accueil
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">1A</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">Maths</span>
+        <span class="breadcrumb-sep">/</span>
+        <button type="button" class="breadcrumb-item breadcrumb-year">
+          2023-2024
+        </button>
+      </nav>
+
+      <div id="folder-container" class="mt-8 md:mt-12">
+        <div class="separator" style="display: flex">
+          <span class="separator-text">Tous les documents</span>
+        </div>
+        
+        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <div
+          class="folder-item fade-in"
+          data-id="1"
+          data-title="DS 1 - Bases Mathématiques"
+          data-description="Bases mathématiques, nombres complexes, logique et raisonnement de première année"
+          style="opacity: 1; animation-delay: 0ms"
+        >
+          <div class="folder-header flex justify-between items-center gap-2">
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
+              >
+                <div class="folder-number mono">DS.01</div>
+                <div class="folder-title md:ml-4 truncate">DS 1 - Bases Mathématiques</div>
+              </div>
+
+              <div
+                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
+              >
+                <span class="folder-description text-xs text-gray-400 mono">
+                  Bases mathématiques, nombres complexes, logique et raisonnement de première année
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+              <button
+                class="fav-icon"
+                data-id="1"
+                aria-label="Ajouter aux favoris"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
+            </div>
+          </div>
+
+          <div class="folder-content">
+            <div class="px-3 py-2 md:px-4 md:py-3">
+              <div class="file-item mb-1">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/ds1.pdf"
+                  target="_blank"
+                  data-id="1"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">01</span>
+                  <span>Énoncé</span>
+                </a>
+              </div>
+              <div class="file-item">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/corrige1.pdf"
+                  target="_blank"
+                  data-id="1"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">02</span>
+                  <span>Corrigé</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <div
+          class="folder-item fade-in"
+          data-id="2"
+          data-title="DS 2 - Analyse et Fonctions"
+          data-description="Fonctions, limites, continuité, dérivabilité"
+          style="opacity: 1; animation-delay: 40ms"
+        >
+          <div class="folder-header flex justify-between items-center gap-2">
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
+              >
+                <div class="folder-number mono">DS.02</div>
+                <div class="folder-title md:ml-4 truncate">DS 2 - Analyse et Fonctions</div>
+              </div>
+
+              <div
+                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
+              >
+                <span class="folder-description text-xs text-gray-400 mono">
+                  Fonctions, limites, continuité, dérivabilité
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+              <button
+                class="fav-icon"
+                data-id="2"
+                aria-label="Ajouter aux favoris"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
+            </div>
+          </div>
+
+          <div class="folder-content">
+            <div class="px-3 py-2 md:px-4 md:py-3">
+              <div class="file-item mb-1">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/ds2.pdf"
+                  target="_blank"
+                  data-id="2"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">01</span>
+                  <span>Énoncé</span>
+                </a>
+              </div>
+              <div class="file-item">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/corrige2.pdf"
+                  target="_blank"
+                  data-id="2"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">02</span>
+                  <span>Corrigé</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <div
+          class="folder-item fade-in"
+          data-id="3"
+          data-title="DS 3 - Suites et Séries"
+          data-description="Suites numériques, convergence, séries numériques"
+          style="opacity: 1; animation-delay: 80ms"
+        >
+          <div class="folder-header flex justify-between items-center gap-2">
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
+              >
+                <div class="folder-number mono">DS.03</div>
+                <div class="folder-title md:ml-4 truncate">DS 3 - Suites et Séries</div>
+              </div>
+
+              <div
+                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
+              >
+                <span class="folder-description text-xs text-gray-400 mono">
+                  Suites numériques, convergence, séries numériques
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+              <button
+                class="fav-icon"
+                data-id="3"
+                aria-label="Ajouter aux favoris"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
+            </div>
+          </div>
+
+          <div class="folder-content">
+            <div class="px-3 py-2 md:px-4 md:py-3">
+              <div class="file-item mb-1">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/ds3.pdf"
+                  target="_blank"
+                  data-id="3"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">01</span>
+                  <span>Énoncé</span>
+                </a>
+              </div>
+              <div class="file-item">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/corrige3.pdf"
+                  target="_blank"
+                  data-id="3"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">02</span>
+                  <span>Corrigé</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <div
+          class="folder-item fade-in"
+          data-id="4"
+          data-title="DS 4 - Algèbre Linéaire"
+          data-description="Espaces vectoriels, applications linéaires, matrices"
+          style="opacity: 1; animation-delay: 120ms"
+        >
+          <div class="folder-header flex justify-between items-center gap-2">
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
+              >
+                <div class="folder-number mono">DS.04</div>
+                <div class="folder-title md:ml-4 truncate">DS 4 - Algèbre Linéaire</div>
+              </div>
+
+              <div
+                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
+              >
+                <span class="folder-description text-xs text-gray-400 mono">
+                  Espaces vectoriels, applications linéaires, matrices
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+              <button
+                class="fav-icon"
+                data-id="4"
+                aria-label="Ajouter aux favoris"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
+            </div>
+          </div>
+
+          <div class="folder-content">
+            <div class="px-3 py-2 md:px-4 md:py-3">
+              <div class="file-item mb-1">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/ds4.pdf"
+                  target="_blank"
+                  data-id="4"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">01</span>
+                  <span>Énoncé</span>
+                </a>
+              </div>
+              <div class="file-item">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/corrige4.pdf"
+                  target="_blank"
+                  data-id="4"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">02</span>
+                  <span>Corrigé</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <div
+          class="folder-item fade-in"
+          data-id="5"
+          data-title="DS 5 - Intégration"
+          data-description="Calcul intégral, primitives, intégration par parties"
+          style="opacity: 1; animation-delay: 160ms"
+        >
+          <div class="folder-header flex justify-between items-center gap-2">
+            <div class="flex-1 min-w-0">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
+              >
+                <div class="folder-number mono">DS.05</div>
+                <div class="folder-title md:ml-4 truncate">DS 5 - Intégration</div>
+              </div>
+
+              <div
+                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
+              >
+                <span class="folder-description text-xs text-gray-400 mono">
+                  Calcul intégral, primitives, intégration par parties
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
+              <button
+                class="fav-icon"
+                data-id="5"
+                aria-label="Ajouter aux favoris"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-star"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </button>
+              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
+            </div>
+          </div>
+
+          <div class="folder-content">
+            <div class="px-3 py-2 md:px-4 md:py-3">
+              <div class="file-item mb-1">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/ds5.pdf"
+                  target="_blank"
+                  data-id="5"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">01</span>
+                  <span>Énoncé</span>
+                </a>
+              </div>
+              <div class="file-item">
+                <a
+                  href="../../../archive/1A/maths/2023-2024/corrige5.pdf"
+                  target="_blank"
+                  data-id="5"
+                >
+                  <span class="text-sm mr-3 mono opacity-50">02</span>
+                  <span>Corrigé</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Libs éventuelles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="../../../src/main.js"></script>
+  </body>
+</html>

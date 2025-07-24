@@ -1,0 +1,427 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SYSTÈME TYPOGRAPHIQUE */
+:root {
+  --primary-font: "Inter", sans-serif;
+  --mono-font: "JetBrains Mono", monospace;
+  --grid-unit: 4px;
+  --line-weight: 1px;
+  --spacing-unit: 16px; /* Base spacing for desktop */
+
+  /* RATIO GÉOMÉTRIQUE */
+  --ratio: 1.414;
+
+  /* PALETTE "ARCHITECTURALE" */
+  --color-paper: #fcfcfc;
+  --color-ink: #222222;
+  --color-ink-light: #555555;
+  --color-stroke: #dedede;
+  --color-surface: #f5f5f5;
+  --color-hint: #888888;
+
+  --centrale-red: #b22133;
+  --centrale-beige: #f7f4f1;
+
+  --transition: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* STRUCTURE DE BASE */
+body {
+  font-family: var(--primary-font);
+  font-weight: 300;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* GRILLE ARCHITECTURALE - Hidden on smaller screens */
+.architectural-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  display: none; /* Hidden by default (mobile first) */
+}
+
+@media (min-width: 768px) {
+  /* Show grid only on md screens and up */
+  .architectural-grid {
+    display: block;
+  }
+}
+
+.grid-vertical {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.grid-vertical::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% / 3);
+  width: var(--line-weight);
+  background-color: var(--color-stroke);
+}
+
+.grid-vertical::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(100% / 3);
+  width: var(--line-weight);
+  background-color: var(--color-stroke);
+}
+
+/* TYPOGRAPHIE */
+h1,
+h2,
+h3,
+.title {
+  font-family: var(--mono-font);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: var(--mono-font);
+  font-weight: 300;
+}
+
+/* DOSSIERS */
+.folder-item {
+  position: relative;
+  border: var(--line-weight) solid var(--color-ink);
+  background-color: var(--color-paper);
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.3s ease-out;
+  margin-bottom: calc(var(--spacing-unit) * 1.2); /* Slightly reduced margin */
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .folder-item {
+    margin-bottom: calc(
+      var(--spacing-unit) * 1.618
+    ); /* Restore desktop margin */
+  }
+}
+
+.folder-item:hover {
+  background-color: var(--color-surface);
+}
+
+.folder-header {
+  cursor: pointer;
+  padding: calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 0.6)
+    calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 0.8);
+  border-bottom: var(--line-weight) dashed transparent;
+}
+
+@media (min-width: 768px) {
+  .folder-header {
+    padding: var(--spacing-unit);
+  }
+}
+
+.folder-open .folder-header {
+  border-bottom: var(--line-weight) dashed var(--color-stroke);
+}
+
+.folder-number {
+  font-family: var(--mono-font);
+  font-weight: 300;
+  font-size: calc(var(--spacing-unit) * 0.75); /* Slightly smaller */
+  position: relative;
+  display: inline-block;
+  color: var(--centrale-red);
+}
+
+@media (min-width: 768px) {
+  .folder-number {
+    font-size: calc(var(--spacing-unit) * 0.8); /* Restore desktop size */
+  }
+}
+
+.folder-number::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background-color: var(--color-ink);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .folder-number::after {
+    display: block; /* Show on desktop */
+    right: -12px;
+    width: 8px;
+  }
+}
+
+.folder-title {
+  font-family: var(--primary-font);
+  font-weight: 400;
+  position: relative;
+  font-size: 0.95rem; /* Slightly smaller on mobile */
+}
+
+@media (min-width: 768px) {
+  .folder-title {
+    font-size: 1rem; /* Restore desktop size */
+  }
+}
+
+.folder-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  background-color: var(--color-surface);
+}
+
+.folder-open .folder-content {
+  max-height: 300px; /* Increased default max-height */
+}
+
+/* FILES */
+.file-item {
+  transition: all 0.25s;
+  position: relative;
+  font-family: var(--primary-font);
+  font-weight: 300;
+  border-left: 4px solid transparent;
+}
+
+.file-item:hover {
+  border-left: 4px solid var(--centrale-red);
+}
+
+.file-item a {
+  padding: 10px 16px; /* Adjusted padding */
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .file-item a {
+    padding: 12px 16px; /* Restore desktop padding */
+  }
+}
+
+/* FAVORITE ICON */
+.fav-icon {
+  position: relative;
+  z-index: 5;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.8;
+  color: var(--centrale-red);
+}
+
+@media (min-width: 768px) {
+  .fav-icon {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.fav-icon svg {
+  display: block;
+  stroke: currentColor;
+  fill: transparent;
+  transition: fill 0.15s ease, transform 0.15s ease;
+}
+
+.folder-item:hover .fav-icon {
+  opacity: 1;
+}
+
+.fav-icon:hover {
+  opacity: 1;
+}
+
+/* Etat actif (rempli) */
+.fav-icon.is-active svg,
+.favorite-item .fav-icon svg {
+  fill: currentColor;
+}
+
+/* TOGGLE ICON */
+.toggle-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+@media (min-width: 480px) {
+  .toggle-icon {
+    display: block;
+  }
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-ink);
+  transition: all 0.2s;
+}
+
+.toggle-icon::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.toggle-icon::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.folder-open .toggle-icon::after {
+  opacity: 0;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/* FAVORITED ITEM */
+.favorite-item {
+  border-left: 3px solid var(--color-ink) !important;
+}
+
+/* SÉPARATEURS MINIMALISTES */
+.separator {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0; /* Reduced margin */
+  transition: opacity 0.3s ease-out; /* Added transition */
+}
+
+@media (min-width: 768px) {
+  .separator {
+    margin: 2rem 0; /* Restore desktop margin */
+  }
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-stroke);
+}
+
+.separator-text {
+  padding: 0 0.75rem; /* Reduced padding */
+  font-family: var(--mono-font);
+  font-size: 9px; /* Slightly smaller */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-hint);
+}
+
+@media (min-width: 768px) {
+  .separator-text {
+    padding: 0 1rem; /* Restore desktop padding */
+    font-size: 10px; /* Restore desktop font size */
+  }
+}
+
+/* RESPONSIVITÉ - Base styles are mobile-first */
+@media (max-width: 767px) {
+  :root {
+    --spacing-unit: 14px; /* Slightly smaller base spacing for mobile */
+  }
+  h1.title {
+    font-size: 1.1rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   BREADCRUMB / PATH
+   ========================= */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--mono-font);
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  color: var(--color-ink-light);
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: default;
+  color: var(--color-ink-light);
+}
+
+.breadcrumb-item.is-link,
+.breadcrumb-year {
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: opacity 0.15s var(--transition);
+}
+
+.breadcrumb-item.is-link:hover,
+.breadcrumb-year:hover {
+  color: var(--centrale-red);
+  text-decoration: underline;
+}
+
+.breadcrumb-year {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+}
+
+.breadcrumb-sep {
+  opacity: 0.3;
+}
+
+.breadcrumb-item svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  margin-right: 5px;
+}
+
+/* =========================
+   FIX: DOSSIER SANS DESCRIPTION
+   ========================= */
+.folder-item.no-description .folder-header {
+  align-items: center; /* centre verticalement le bloc titre/numéro */
+}
+
+.folder-item.no-description .meta-line {
+  display: none;
+}

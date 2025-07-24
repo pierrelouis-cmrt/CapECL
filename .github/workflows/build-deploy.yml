@@ -1,0 +1,47 @@
+name: Build & Commit artifacts
+
+on:
+  push:
+    branches: [main]
+    # Don't retrigger the workflow when the bot only updates the built files
+    paths-ignore:
+      - "dist/**"
+      - "src/output.css"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write # needed so the action can push the commit back
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # we need history to push back
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Commit ONLY on direct pushes to main (not on PRs)
+      - name: Commit built files back to repo
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(ci): commit build artifacts [skip ci]"
+          file_pattern: |
+            dist/**
+            src/output.css
+          branch: main

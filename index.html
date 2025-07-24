@@ -1,235 +1,366 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="js-loading js-prep">
   <head>
+    <script>
+      document.documentElement.classList.add("js-prep");
+      document.documentElement.classList.add("js-loading");
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maths • DS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <title>CapECL</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="menu.css" />
   </head>
-  <body class="flex flex-col min-h-screen">
-    <!-- Search overlay -->
-    <div id="search-overlay" class="search-overlay"></div>
-
-    <!-- Grille architecturale (Hidden on mobile via CSS) -->
-    <div class="architectural-grid">
-      <div class="grid-vertical"></div>
-    </div>
-
-    <!-- Header épuré et architectural -->
-    <!-- Uses flex-col on mobile, flex-row on md+ -->
-    <header id="main-header" class="header-container py-3 px-4 md:py-4 md:px-6">
-      <div
-        class="container mx-auto grid [grid-template-columns:1fr_auto] md:[grid-template-columns:auto_1fr_auto] gap-3 md:gap-4 md:items-center"
-      >
-        <!-- Title/Brand Area -->
-        <div class="flex items-center gap-3 justify-center md:justify-start col-span-2 md:col-span-1">
-          <h1 class="title text-lg md:text-xl tracking-tight">DS</h1>
-          <div class="h-4 md:h-5 w-px bg-black"></div>
-          <span class="mono text-xs">MATHÉMATIQUES</span>
-        </div>
-        <!-- Barre de recherche minimaliste -->
-        <div
-          class="search-container w-full md:flex-1 relative md:mx-12 md:max-w-xl"
-        >
-          <!-- Wrapper for input and clear button -->
-          <div class="search-input-wrapper">
-            <input
-              type="text"
-              id="search"
-              placeholder="rechercher un ds..."
-              class="w-full px-3 search-input"
-              autocomplete="off"
-            />
-            <!-- Clear button -->
-            <span id="clear-search-btn" class="clear-search-btn">
-              <i class="fas fa-times text-xs"></i>
-            </span>
-          </div>
-          <div id="search-suggestions" class="search-suggestions"></div>
-        </div>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger self-center md:justify-self-end">
-          <div class="hamburger__container">
-            <span class="hamburger__top"></span>
-            <span class="hamburger__middle"></span>
-            <span class="hamburger__bottom"></span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main with adjusted padding for mobile -->
-    <main class="container mx-auto px-4 md:px-6 py-8 md:py-12 flex-1">
-      <div class="mb-8 md:mb-12 flex justify-between items-center">
-        <div class="flex items-center gap-4 md:gap-6">
-          <div class="w-5 md:w-6 h-px bg-black"></div>
-          <h2 class="text-base md:text-lg tracking-tight mono">Collection</h2>
-        </div>
-      </div>
-
-      <div id="folder-container" class="mt-8 md:mt-12">
-        <!-- Loading Indicator architectural -->
-        <div id="loading-placeholder" class="text-center py-12 md:py-16">
-          <div class="loading-indicator mx-auto">
-            <div class="loading-line loading-h"></div>
-            <div class="loading-line loading-h"></div>
-            <div class="loading-line loading-h"></div>
-            <div class="loading-line loading-v"></div>
-            <div class="loading-line loading-v"></div>
-            <div class="loading-line loading-v"></div>
-          </div>
-          <p class="mt-6 md:mt-8 mono text-xs tracking-widest uppercase">
-            Chargement
-          </p>
-        </div>
-        <!-- Folders will be inserted here -->
-        <!-- Separators will be inserted here -->
-      </div>
-      <div
-        id="no-results"
-        class="text-center py-12 md:py-16 mono text-xs tracking-widest uppercase text-gray-400"
-        style="display: none"
-      >
-        Aucun résultat trouvé
-      </div>
-    </main>
-
-    <!-- Fullscreen Menu Markup -->
+  <body>
     <div class="menu">
       <div class="menu__container">
+        <!-- Column 1 -->
         <nav class="menu__nav">
           <ul class="menu__list">
             <li class="menu__item js-span">Pour les 1A</li>
             <li class="menu__subtitle">DS Maths</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2024-2025</a>
+              <a class="menu__link" href="1A/maths/2024-2025/">2024-2025</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2023-2024</a>
+              <a class="menu__link" href="1A/maths/2023-2024/">2023-2024</a>
             </li>
             <li class="menu__subtitle">DS Physique</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2024-2025</a>
+              <a class="menu__link" href="1A/physique/2024-2025/">2024-2025</a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2023-2024</a>
+              <a class="menu__link" href="1A/physique/2023-2024/">2023-2024</a>
             </li>
             <li class="menu__subtitle">Manuels</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Ellipses Maths PCSI</a>
+              <a class="menu__link" href="#" target="_blank"
+                >Ellipses Maths PCSI
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Ellipses Physique PCSI</a>
+              <a class="menu__link" href="#" target="_blank"
+                >Ellipses Physique PCSI
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
             </li>
           </ul>
         </nav>
-
+        <!-- Column 2 -->
         <nav class="menu__nav">
           <ul class="menu__list">
             <li class="menu__item js-span">Et les 2A</li>
             <li class="menu__subtitle">DS Maths</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2024-2025</a>
+              <a class="menu__link" href="2A/maths/2024-2025/">2024-2025</a>
             </li>
             <li class="menu__subtitle">DS Physique</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">2024-2025</a>
+              <a class="menu__link" href="2A/physique/2024-2025/">2024-2025</a>
             </li>
             <li class="menu__subtitle">Manuels</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Ellipses Maths PC/PSI</a>
+              <a class="menu__link" href="#" target="_blank"
+                >Ellipses Maths PC/PSI
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Ellipses Physique PC/PSI</a>
+              <a class="menu__link" href="#" target="_blank"
+                >Ellipses Physique PC/PSI
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" /></svg
+              ></a>
             </li>
           </ul>
         </nav>
-
+        <!-- Column 3 -->
         <nav class="menu__nav">
           <ul class="menu__list">
             <li class="menu__item js-span">Ressources</li>
             <li class="menu__subtitle">Manuels</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">D'autres éditions</a>
+              <a class="menu__link" href="ressources/manuels.html"
+                >D'autres éditions</a
+              >
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Google Drive
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a class="menu__link" href="#" target="_blank">
+                Google Drive
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__subtitle">Resources</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Liens Utiles</a>
+              <a class="menu__link" href="ressources/liens.html"
+                >Liens Utiles</a
+              >
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">De la sup à la spé</a>
+              <a class="menu__link" href="ressources/revisions-sup.html"
+                >De la sup à la spé</a
+              >
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Github
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://github.com/pierrelouis-cmrt/CapECL"
+                target="_blank"
+              >
+                Github
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Insta
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://www.instagram.com/cap_ecolecentralelyon/"
+                target="_blank"
+              >
+                Insta
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__subtitle">Accès rapide</li>
             <li class="menu__item">
-              <a class="menu__link" href="#">GitLab 1A
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://gitlab.com/guizzmoloul/capECL-1A"
+                target="_blank"
+              >
+                GitLab 1A
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">GitLab 2A
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://gitlab.com/capecl/y2/-/tree/main?ref_type=heads"
+                target="_blank"
+              >
+                GitLab 2A
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Infocentre
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://cas.enise.fr/cas/login?service=http%3a%2f%2finfocentre.enise.fr%2f"
+                target="_blank"
+              >
+                Infocentre
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
             <li class="menu__item">
-              <a class="menu__link" href="#">Moodle
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right-icon lucide-arrow-up-right"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+              <a
+                class="menu__link"
+                href="https://moodle.enise.fr/"
+                target="_blank"
+              >
+                Moodle
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-arrow-up-right-icon"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
               </a>
             </li>
           </ul>
         </nav>
 
+        <!-- Sidebar -->
         <div class="menu__sidebar">
           <div class="menu__flip">
             <div class="menu__copy">
               Réalisé par
-              <a class="menu__external" href="https://www.instagram.com/bapt.bnl/" target="_blank" rel="noopener noreferrer">Baptiste</a>
+              <a
+                class="menu__external"
+                href="https://www.instagram.com/bapt.bnl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Baptiste</a
+              >
               et
-              <a class="menu__external" href="https://pierrelouis.net" target="_blank" rel="noopener noreferrer">Pierre-Louis</a>
+              <a
+                class="menu__external"
+                href="https://pierrelouis.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Pierre-Louis</a
+              >
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Decorative image strip (desktop only) -->
       <div class="menu__img">
         <figure class="absolute-bg"></figure>
       </div>
+      <!-- Decorative motif (desktop only) -->
+      <div class="menu__motif">
+        <figure class="absolute-bg"></figure>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="menu.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

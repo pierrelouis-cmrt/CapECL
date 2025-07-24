@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "titre": "DS 1 - Mécanique Classique",
+    "description": "Mécanique du point, référentiels, forces centrales"
+  },
+  {
+    "id": 2,
+    "titre": "DS 2 - Électromagnétisme",
+    "description": "Champ électrique, magnétique, induction électromagnétique"
+  },
+  {
+    "id": 3,
+    "titre": "DS 3 - Ondes",
+    "description": "Propagation d'ondes, interférences, diffraction"
+  },
+  {
+    "id": 4,
+    "titre": "DS 4 - Thermodynamique Avancée",
+    "description": "Second principe, entropie, potentiels thermodynamiques"
+  }
+]

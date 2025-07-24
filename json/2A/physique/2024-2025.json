@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "titre": "DS 1 - Mécanique Quantique",
+    "description": "Postulats de la mécanique quantique, équation de Schrödinger"
+  },
+  {
+    "id": 2,
+    "titre": "DS 2 - Physique Statistique",
+    "description": "Ensembles statistiques, distribution de Boltzmann"
+  },
+  {
+    "id": 3,
+    "titre": "DS 3 - Électrodynamique",
+    "description": "Équations de Maxwell, rayonnement électromagnétique"
+  },
+  {
+    "id": 4,
+    "titre": "DS 4 - Physique des Solides",
+    "description": "Structure cristalline, propriétés électroniques"
+  },
+  {
+    "id": 5,
+    "titre": "DS 5 - Relativité",
+    "description": "Relativité restreinte et générale, espace-temps"
+  }
+]

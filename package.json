@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "build:pages": "node scripts/build-pages.js",
+    "build": "npm run build:css && npm run build:pages"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
