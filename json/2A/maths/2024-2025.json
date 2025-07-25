@@ -1,27 +1,57 @@
 [
   {
     "id": 1,
-    "titre": "DS 1 - Analyse Complexe",
-    "description": "Fonctions holomorphes, résidus, intégrales complexes"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 2,
-    "titre": "DS 2 - Analyse de Fourier",
-    "description": "Séries de Fourier, transformée de Fourier, applications"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 3,
-    "titre": "DS 3 - Équations aux Dérivées Partielles",
-    "description": "EDP classiques, chaleur, ondes, Laplace"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 4,
-    "titre": "DS 4 - Probabilités Avancées",
-    "description": "Variables aléatoires, lois continues, théorèmes limites"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 5,
-    "titre": "DS 5 - Analyse Numérique",
-    "description": "Méthodes numériques, interpolation, intégration numérique"
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 6,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 7,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 8,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 9,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 10,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 11,
+    "titre": "",
+    "description": ""
   }
 ]

@@ -208,14 +208,16 @@ h3,
   border-left: 4px solid var(--centrale-red);
 }
 
-.file-item a {
+.file-item a,
+.file-missing {
   padding: 10px 16px; /* Adjusted padding */
   display: flex;
   align-items: center;
 }
 
 @media (min-width: 768px) {
-  .file-item a {
+  .file-item a,
+  .file-missing {
     padding: 12px 16px; /* Restore desktop padding */
   }
 }

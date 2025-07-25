@@ -51,9 +51,7 @@
         <span class="breadcrumb-sep">/</span>
         <span class="breadcrumb-item">Maths</span>
         <span class="breadcrumb-sep">/</span>
-        <button type="button" class="breadcrumb-item breadcrumb-year">
-          2024-2025
-        </button>
+        <button type="button" class="breadcrumb-item breadcrumb-year">2024-2025</button>
       </nav>
 
       <div id="folder-container" class="mt-8 md:mt-12">
@@ -61,52 +59,29 @@
           <span class="separator-text">Tous les documents</span>
         </div>
         
-        <!-- ===== FOLDER AVEC DESCRIPTION ===== -->
+        <!-- ===== FOLDER SANS DESCRIPTION ===== -->
         <div
           class="folder-item fade-in"
           data-id="1"
-          data-title="Titre du DS"
-          data-description="Un exemple de description"
+          data-title=""
+          data-description=""
           style="opacity: 1; animation-delay: 0ms"
         >
           <div class="folder-header flex justify-between items-center gap-2">
             <div class="flex-1 min-w-0">
-              <div
-                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
-              >
+              <div class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0">
                 <div class="folder-number mono">DS.01</div>
-                <div class="folder-title md:ml-4 truncate">Titre du DS</div>
+                <div class="folder-title md:ml-4 truncate"></div>
               </div>
 
-              <div
-                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
-              >
-                <span class="folder-description text-xs text-gray-400 mono">
-                  Un exemple de description
-                </span>
+              <div class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center">
+                <span class="folder-description text-xs text-gray-400 mono"></span>
               </div>
             </div>
 
             <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
-              <button
-                class="fav-icon"
-                data-id="1"
-                aria-label="Ajouter aux favoris"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-star"
-                >
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
+              <button class="fav-icon" data-id="1" aria-label="Ajouter aux favoris">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               </button>
               <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
             </div>
@@ -114,102 +89,11 @@
 
           <div class="folder-content">
             <div class="px-3 py-2 md:px-4 md:py-3">
-              <div class="file-item mb-1">
-                <a
-                  href="../../../archive/1A/maths/2024-2025/ds1.pdf"
-                  target="_blank"
-                  data-id="1"
-                >
-                  <span class="text-sm mr-3 mono opacity-50">01</span>
-                  <span>Énoncé</span>
-                </a>
+              <div class="file-item">
+                <a href="../../../archive/1A/maths/2024-2025/ds1.pdf" target="_blank" data-id="1"><span class="text-sm mr-3 mono opacity-50">01</span><span>Énoncé</span></a>
               </div>
               <div class="file-item">
-                <a
-                  href="../../../archive/1A/maths/2024-2025/corrige1.pdf"
-                  target="_blank"
-                  data-id="1"
-                >
-                  <span class="text-sm mr-3 mono opacity-50">02</span>
-                  <span>Corrigé</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== FOLDER SANS DESCRIPTION ===== -->
-        <div
-          class="folder-item fade-in"
-          data-id="2"
-          data-title="Un DS sans description"
-          data-description=""
-          style="opacity: 1; animation-delay: 40ms"
-        >
-          <div class="folder-header flex justify-between items-center gap-2">
-            <div class="flex-1 min-w-0">
-              <div
-                class="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2 mb-1 md:mb-0"
-              >
-                <div class="folder-number mono">DS.02</div>
-                <div class="folder-title md:ml-4 truncate">Un DS sans description</div>
-              </div>
-
-              <div
-                class="meta-line mt-1 md:mt-2 flex flex-wrap gap-x-3 gap-y-1 items-center"
-              >
-                <span class="folder-description text-xs text-gray-400 mono">
-                  
-                </span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 md:gap-4 flex-shrink-0">
-              <button
-                class="fav-icon"
-                data-id="2"
-                aria-label="Ajouter aux favoris"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-star"
-                >
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </button>
-              <button class="toggle-icon" aria-label="Ouvrir / Fermer"></button>
-            </div>
-          </div>
-
-          <div class="folder-content">
-            <div class="px-3 py-2 md:px-4 md:py-3">
-              <div class="file-item mb-1">
-                <a
-                  href="../../../archive/1A/maths/2024-2025/ds2.pdf"
-                  target="_blank"
-                  data-id="2"
-                >
-                  <span class="text-sm mr-3 mono opacity-50">01</span>
-                  <span>Énoncé</span>
-                </a>
-              </div>
-              <div class="file-item">
-                <a
-                  href="../../../archive/1A/maths/2024-2025/corrige2.pdf"
-                  target="_blank"
-                  data-id="2"
-                >
-                  <span class="text-sm mr-3 mono opacity-50">02</span>
-                  <span>Corrigé</span>
-                </a>
+                <a href="../../../archive/1A/maths/2024-2025/corrige1.pdf" target="_blank" data-id="1"><span class="text-sm mr-3 mono opacity-50">02</span><span>Corrigé</span></a>
               </div>
             </div>
           </div>

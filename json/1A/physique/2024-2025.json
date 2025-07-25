@@ -1,27 +1,57 @@
 [
   {
     "id": 1,
-    "titre": "DS 1 - Mécanique du Point",
-    "description": "Cinématique, dynamique du point matériel, lois de Newton"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 2,
-    "titre": "DS 2 - Oscillateurs",
-    "description": "Oscillateurs harmoniques, amortis, forcés, résonance"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 3,
-    "titre": "DS 3 - Électrocinétique",
-    "description": "Circuits électriques, lois de Kirchhoff, régimes transitoires"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 4,
-    "titre": "DS 4 - Optique Géométrique",
-    "description": "Lois de Snell-Descartes, lentilles, miroirs, instruments d'optique"
+    "titre": "",
+    "description": ""
   },
   {
     "id": 5,
-    "titre": "DS 5 - Thermodynamique",
-    "description": "Premier principe, transformations thermodynamiques, machines thermiques"
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 6,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 7,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 8,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 9,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 10,
+    "titre": "",
+    "description": ""
+  },
+  {
+    "id": 11,
+    "titre": "",
+    "description": ""
   }
 ]
