@@ -1,57 +1,57 @@
 [
   {
     "id": 1,
-    "titre": "",
+    "titre": "Séries (début)",
     "description": ""
   },
   {
     "id": 2,
-    "titre": "",
+    "titre": "Algèbre et matrices",
     "description": ""
   },
   {
     "id": 3,
-    "titre": "",
+    "titre": "Séries (suite)",
     "description": ""
   },
   {
     "id": 4,
-    "titre": "",
-    "description": ""
+    "titre": "Séries (fin) et proba (début)",
+    "description": "Le corrigé donné est la copie de Baptiste. Attention : Pour la question 2 du dernier exercice, la méthode utilisée n'est pas du tout la plus rapide, reconnaitre une dérivée n-ième était bien plus efficace :) !"
   },
   {
     "id": 5,
-    "titre": "",
+    "titre": "Proba (fin)",
     "description": ""
   },
   {
     "id": 6,
-    "titre": "",
-    "description": ""
+    "titre": "Algèbre",
+    "description": "Le corrigé donné est la copie de Baptiste. Attention : Certaines questions n'ont pas été réussies, celles-ci sont alors corrigées à la fin du document, dans une belle page LateX :) ! Ainsi, pour les questions 3)b), 4)a)ii) et 5 de l'exercice 1 et pour la question 1 de l'exercice 2, cela ne sert à rien de regarder sur la copie, c'est au moins incomplet, voire faux."
   },
   {
     "id": 7,
-    "titre": "",
+    "titre": "Algèbre",
     "description": ""
   },
   {
     "id": 8,
-    "titre": "",
+    "titre": "Algèbre",
     "description": ""
   },
   {
     "id": 9,
-    "titre": "",
+    "titre": "Espaces euclidiens",
     "description": ""
   },
   {
     "id": 10,
-    "titre": "",
+    "titre": "Géométrie dans les espaces euclidiens et analyse",
     "description": ""
   },
   {
     "id": 11,
-    "titre": "",
+    "titre": "Analyse",
     "description": ""
   }
 ]

@@ -1,57 +1,57 @@
 [
   {
     "id": 1,
-    "titre": "",
-    "description": ""
+    "titre": "Bases Mathématiques",
+    "description": "Bases mathématiques, nombres complexes"
   },
   {
     "id": 2,
-    "titre": "",
-    "description": ""
+    "titre": "Sommes et Raisonnements",
+    "description": "Sommes, raisonnements"
   },
   {
     "id": 3,
-    "titre": "",
-    "description": ""
+    "titre": "Equations Différentielles",
+    "description": "Analyse, equa diff, fonctions"
   },
   {
     "id": 4,
-    "titre": "",
-    "description": ""
+    "titre": "Ensembles, suites et fonctions (début)",
+    "description": "Analyse, ensembles, suites récurrentes, fonctions"
   },
   {
     "id": 5,
-    "titre": "",
-    "description": ""
+    "titre": "Fonctions et dérivation",
+    "description": "Analyse, fonctions, dérivées"
   },
   {
     "id": 6,
-    "titre": "",
-    "description": ""
+    "titre": " Polynômes et algèbre linéaire (début)",
+    "description": "Polynômes, algèbre linéaire"
   },
   {
     "id": 7,
-    "titre": "",
-    "description": ""
+    "titre": "Développements limités",
+    "description": "Analyse, DL, fonctions, limites"
   },
   {
     "id": 8,
-    "titre": "",
-    "description": ""
+    "titre": "Intégration",
+    "description": "Analyse, intégrales, fonctions"
   },
   {
     "id": 9,
-    "titre": "",
-    "description": ""
+    "titre": "Algèbre linéaire (suite) et matrices (début)",
+    "description": "Algèbre linéaire, matrices, systèmes d'équations"
   },
   {
     "id": 10,
-    "titre": "",
-    "description": ""
+    "titre": "Matrices (fin)",
+    "description": "Algèbre linéaire, matrices, déterminants, changement de base"
   },
   {
     "id": 11,
-    "titre": "",
-    "description": ""
+    "titre": "Probabilités",
+    "description": "Probabilités, variables aléatoires, lois de probabilité"
   }
 ]
