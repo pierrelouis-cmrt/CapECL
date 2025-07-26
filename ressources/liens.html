@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapECL</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Built CSS -->
+    <link rel="stylesheet" href="../../../src/output.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Grille architecturale (Hidden on mobile via CSS) -->
+    <div class="architectural-grid">
+      <div class="grid-vertical"></div>
+    </div>
+
+    <main class="container mx-auto px-4 md:px-6 py-8 md:py-12 flex-1">
+      <!-- -------- PATH / BREADCRUMB -------- -->
+      <nav class="breadcrumb mb-8 md:mb-12" aria-label="Fil d'Ariane">
+        <a href="../index.html" class="breadcrumb-item is-link">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+            <path
+              d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+            ></path>
+          </svg>
+          Accueil
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">Ressources</span>
+        <span class="breadcrumb-sep">/</span>
+        <button type="button" class="breadcrumb-item breadcrumb-year">
+          Liens Utiles
+        </button>
+      </nav>
+
+      <section class="content-section">
+        <h1 class="content-title">Liens utiles</h1>
+
+        <div class="intro-text">
+          <p>
+            Pour les 1A, les cours/TD des profs,
+            <a
+              href="https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mpsi/index"
+              target="_blank"
+              >bibmaths</a
+            >
+            et les manuels
+            <a href="manuels.html" target="_blank">ici</a> sont déjà suffisants.
+          </p>
+          <p>
+            Pour les 2A, voici d'autres sites utiles en plus de
+            <a
+              href="https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathspe/index"
+              target="_blank"
+              >bibmaths</a
+            >
+            pour bosser en spé, en parallèle des TD fournis par les professeurs.
+          </p>
+        </div>
+
+        <!-- Section Maths -->
+        <div class="separator">
+          <span class="separator-text">Mathématiques</span>
+        </div>
+
+        <div class="links-grid">
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">01</span>
+              <span class="link-domain">normalesup.org</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Archives DS - ENS</h3>
+              <p class="link-description">
+                Super site avec de nombreux DS (bas de page). Navigation entre
+                les années via "Archives".
+              </p>
+              <a
+                href="https://www.normalesup.org/~dconduche/prepas/PC/index.html#DM"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">02</span>
+              <span class="link-domain">blogspot.com</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Problèmes Lamine Houcin</h3>
+              <p class="link-description">
+                Problèmes qui pourraient ressembler à ce que met Mme Bourne,
+                avec plus de questions intermédiaires.
+              </p>
+              <a
+                href="https://laminehoucin.blogspot.com/"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">03</span>
+              <span class="link-domain">xif.fr</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Planches Dupuy de Lôme</h3>
+              <p class="link-description">
+                Des planches d'exercices, alternative à bibmaths.
+              </p>
+              <a
+                href="https://www.xif.fr/public/pr%C3%A9pas-dupuy-de-l%C3%B4me-maths/"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">04</span>
+              <span class="link-domain">maths-france.fr</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Maths France - Exercices</h3>
+              <p class="link-description">
+                Autres planches d'exercices, encore une alternative à bibmaths.
+              </p>
+              <a
+                href="https://maths-france.fr/math-spe/exercices/"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Physique -->
+        <div class="separator">
+          <span class="separator-text">Physique</span>
+        </div>
+
+        <div class="links-grid">
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">05</span>
+              <span class="link-domain">wordpress.com</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Prépa Nouar - Électromagnétisme</h3>
+              <p class="link-description">
+                Super site pour le premier semestre, nombreux DM
+                d'électromagnétisme niveau DS. Voir section DM.
+              </p>
+              <a
+                href="https://prepanouar.wordpress.com/dm-delectromagnetisme/"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">06</span>
+              <span class="link-domain">etienne-thibierge.fr</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">Cours & TD - PT</h3>
+              <p class="link-description">
+                Cours et TD de PT. Attention : programme PT, pas tous nos
+                chapitres inclus.
+              </p>
+              <a
+                href="http://etienne-thibierge.fr/cours-td-pt.php"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-header">
+              <span class="link-number">07</span>
+              <span class="link-domain">pcjoffre.fr</span>
+            </div>
+            <div class="link-content">
+              <h3 class="link-title">DS PC Joffre</h3>
+              <p class="link-description">
+                DS de PC (modifier l'année dans l'URL pour les archives).
+                Attention au programme PC différent.
+              </p>
+              <a
+                href="http://pcjoffre.fr/devoirs-2022-2023/"
+                target="_blank"
+                class="link-url"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  ></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visiter
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Libs éventuelles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  </body>
+</html>

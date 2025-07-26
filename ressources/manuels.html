@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapECL</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Built CSS -->
+    <link rel="stylesheet" href="../../../src/output.css" />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!-- Grille architecturale (Hidden on mobile via CSS) -->
+    <div class="architectural-grid">
+      <div class="grid-vertical"></div>
+    </div>
+
+    <main class="container mx-auto px-4 md:px-6 py-8 md:py-12 flex-1">
+      <!-- -------- PATH / BREADCRUMB -------- -->
+      <nav class="breadcrumb mb-8 md:mb-12" aria-label="Fil d'Ariane">
+        <a href="../index.html" class="breadcrumb-item is-link">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+            <path
+              d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+            ></path>
+          </svg>
+          Accueil
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">Ressources</span>
+        <span class="breadcrumb-sep">/</span>
+        <button type="button" class="breadcrumb-item breadcrumb-year">
+          Tous les manuels
+        </button>
+      </nav>
+
+      <section class="content-section">
+        <h1 class="content-title">Manuels & Ressources</h1>
+
+        <div class="intro-text">
+          <p>
+            Retrouvez ici l'ensemble des manuels et ressources pédagogiques
+            organisés par année et par matière. Utilisez les filtres ci-dessous
+            pour naviguer facilement dans la collection.
+          </p>
+        </div>
+
+        <!-- SYSTÈME DE FILTRES -->
+        <div class="filter-section">
+          <div class="filter-group">
+            <h3 class="filter-title">Année</h3>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="radio" name="year" value="1A" checked />
+                <span class="filter-label">1A</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="year" value="2A" />
+                <span class="filter-label">2A</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3 class="filter-title">Matières</h3>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="checkbox" name="subject" value="maths" checked />
+                <span class="filter-label">Maths</span>
+              </label>
+              <label class="filter-option">
+                <input
+                  type="checkbox"
+                  name="subject"
+                  value="physique"
+                  checked
+                />
+                <span class="filter-label">Physique</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" name="subject" value="chimie" checked />
+                <span class="filter-label">Chimie</span>
+              </label>
+              <label class="filter-option">
+                <input type="checkbox" name="subject" value="si" checked />
+                <span class="filter-label">SI</span>
+              </label>
+            </div>
+          </div>
+
+          <button class="filter-reset" type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-list-filter-icon lucide-list-filter"
+            >
+              <path d="M3 6h18" />
+              <path d="M7 12h10" />
+              <path d="M10 18h4" />
+            </svg>
+            Tout sélectionner
+          </button>
+        </div>
+
+        <!-- COMPTEUR DE RÉSULTATS -->
+        <div class="results-counter">
+          <span class="results-text">
+            <span class="results-count">22</span> manuels trouvés
+          </span>
+        </div>
+
+        <!-- GRILLE DES MANUELS -->
+        <div class="manuals-grid">
+          <!-- 1ère ANNÉE - MATHÉMATIQUES -->
+          <div class="manual-item" data-year="1A" data-subject="maths">
+            <div class="manual-header">
+              <span class="manual-number">01</span>
+              <span class="manual-subject">MATHS</span>
+              <span class="manual-year">1A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Analyse - Fonctions et Suites</h3>
+              <p class="manual-description">
+                Manuel complet couvrant l'analyse en première année : limites,
+                continuité, dérivabilité et étude de fonctions.
+              </p>
+              <div class="manual-meta">
+                <span class="manual-pages">156 pages</span>
+                <span class="manual-updated">Mis à jour Sept. 2024</span>
+              </div>
+              <a
+                href="Manuels/1A_Maths_Analyse.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <div class="manual-item" data-year="1A" data-subject="maths">
+            <div class="manual-header">
+              <span class="manual-number">02</span>
+              <span class="manual-subject">MATHS</span>
+              <span class="manual-year">1A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Algèbre Linéaire</h3>
+              <div class="manual-meta">
+                <span class="manual-pages">124 pages</span>
+                <span class="manual-updated">Mis à jour Sept. 2024</span>
+              </div>
+              <a
+                href="Manuels/1A_Maths_Algebre.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- 1ère ANNÉE - PHYSIQUE -->
+          <div class="manual-item" data-year="1A" data-subject="physique">
+            <div class="manual-header">
+              <span class="manual-number">03</span>
+              <span class="manual-subject">PHYSIQUE</span>
+              <span class="manual-year">1A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Mécanique du Point</h3>
+              <p class="manual-description">
+                Cours complet de mécanique newtonienne avec exercices
+                d'application et méthodes de résolution.
+              </p>
+              <div class="manual-meta">
+                <span class="manual-pages">203 pages</span>
+                <span class="manual-updated">Mis à jour Oct. 2024</span>
+              </div>
+              <a
+                href="Manuels/1A_Physique_Mecanique.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- 1ère ANNÉE - CHIMIE -->
+          <div class="manual-item" data-year="1A" data-subject="chimie">
+            <div class="manual-header">
+              <span class="manual-number">04</span>
+              <span class="manual-subject">CHIMIE</span>
+              <span class="manual-year">1A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Thermodynamique Chimique</h3>
+              <div class="manual-meta">
+                <span class="manual-pages">178 pages</span>
+                <span class="manual-updated">Mis à jour Sept. 2024</span>
+              </div>
+              <a
+                href="Manuels/1A_Chimie_Thermo.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- 1ère ANNÉE - SI -->
+          <div class="manual-item" data-year="1A" data-subject="si">
+            <div class="manual-header">
+              <span class="manual-number">05</span>
+              <span class="manual-subject">SI</span>
+              <span class="manual-year">1A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Systèmes Automatisés</h3>
+              <p class="manual-description">
+                Introduction aux systèmes automatisés et à la modélisation des
+                systèmes techniques.
+              </p>
+              <div class="manual-meta">
+                <span class="manual-pages">145 pages</span>
+                <span class="manual-updated">Mis à jour Sept. 2024</span>
+              </div>
+              <a
+                href="Manuels/1A_SI_Automatique.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- 2ème ANNÉE - EXEMPLES -->
+          <div class="manual-item" data-year="2A" data-subject="maths">
+            <div class="manual-header">
+              <span class="manual-number">12</span>
+              <span class="manual-subject">MATHS</span>
+              <span class="manual-year">2A</span>
+            </div>
+            <div class="manual-content">
+              <h3 class="manual-title">Séries et Intégrales</h3>
+              <p class="manual-description">
+                Approfondissement de l'analyse : séries numériques, séries de
+                fonctions et calcul intégral avancé.
+              </p>
+              <div class="manual-meta">
+                <span class="manual-pages">198 pages</span>
+                <span class="manual-updated">Mis à jour Oct. 2024</span>
+              </div>
+              <a
+                href="Manuels/2A_Maths_Series.pdf"
+                target="_blank"
+                class="manual-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-file-text-icon lucide-file-text"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M10 9H8" />
+                  <path d="M16 13H8" />
+                  <path d="M16 17H8" />
+                </svg>
+                Télécharger PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- Ajouter les autres manuels... -->
+        </div>
+
+        <!-- MESSAGE SI AUCUN RÉSULTAT -->
+        <div class="no-results" style="display: none">
+          <div class="no-results-content">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m21 21-4.34-4.34" />
+              <circle cx="11" cy="11" r="8" />
+            </svg>
+            <h3>Aucun manuel trouvé</h3>
+            <p>Essayez de modifier vos filtres pour voir plus de résultats.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Libs éventuelles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="../src/manuels.js"></script>
+  </body>
+</html>
