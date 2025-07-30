@@ -42,6 +42,7 @@ jobs:
         with:
           commit_message: "chore(ci): commit build artifacts [skip ci]"
           file_pattern: |
-            dist/**
+            1A/**
+            2A/**
             src/output.css
           branch: main
