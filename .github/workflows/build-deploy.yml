@@ -5,8 +5,9 @@ on:
     branches: [main]
     # Don't retrigger the workflow when the bot only updates the built files
     paths-ignore:
-      - "dist/**"
-      - "src/output.css"
+      - 1A/**
+      - 2A/**
+      - src/output.css
   pull_request:
     branches: [main]
 
@@ -41,8 +42,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(ci): commit build artifacts [skip ci]"
-          file_pattern: |
-            1A/**
-            2A/**
-            src/output.css
+          commit_options: "-a"
+          add_options: "-A"
           branch: main
