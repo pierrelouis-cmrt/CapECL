@@ -1,2 +1,2 @@
 # CapECL
- Site d'étudiants regroupant outils et ressources utiles. 
+Site fait par et pour les étudiants de CapECL regroupant outils et ressources utiles.
