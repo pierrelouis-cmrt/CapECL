@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interface</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="CapECL" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <main class="content">
+        <section class="hero">
+          <div class="hero__description">
+            <a href="../" class="hero__back-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-undo2-icon lucide-undo-2"
+              >
+                <path d="M9 14 4 9l5-5" />
+                <path
+                  d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"
+                /></svg
+              >Retour à l'accueil
+            </a>
+          </div>
+          <h1 class="hero__heading">
+            <span class="hero__line hero__line--secondary"
+              >Deck de flashcards Anki</span
+            >
+          </h1>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="section post" aria-labelledby="anki-download">
+          <p>
+            Ces flashcards ont été conçues par Chloé et Antoine (promo
+            2023-2025) pour couvrir l'essentiel du programme de maths et de
+            physique en 2ème année. Le fichier distribué est un export Anki
+            <strong>.apkg</strong> directement importable dans l'application.
+          </p>
+
+          <div class="post__block">
+            <h2 class="section__title" id="anki-download">Téléchargement</h2>
+            <p>
+              Téléchargez l'archive et ouvrez-la avec Anki (bouton
+              <strong>Importer</strong>) pour ajouter le deck à votre
+              collection. Les cartes sont classées par chapitres et
+              sous-chapitres.
+            </p>
+            <p>
+              <a href="/anki/Anki.zip" target="_blank" rel="noopener noreferrer"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-download-icon lucide-download"
+                >
+                  <path d="M12 15V3" />
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
+                Télécharger le deck Anki</a
+              >
+            </p>
+            <p class="post__muted">
+              Le fichier ici n'est pas mis à jour. Certains chapitres peuvent
+              être incomplets ou absents. Les cours des professeurs sont aussi
+              assujettis à des changements, faites bien attention.
+            </p>
+          </div>
+
+          <div class="post__block">
+            <h2 class="section__title" id="anki-guide">Prise en main rapide</h2>
+            <p>
+              Anki est un logiciel de flashcards bien connu des étudiants,
+              notamment en médecine. Il fonctionne par répétition espacée pour
+              optimiser la mémorisation. Installez la version bureau pour gérer
+              vos cartes, puis synchronisez-les avec les applications mobiles.
+            </p>
+            <ul class="post__list">
+              <li>
+                Installez Anki gratuitement depuis
+                <a
+                  href="https://apps.ankiweb.net/#downloads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >le site officiel</a
+                >
+                (Windows, macOS, Linux) ou via AnkiDroid sur Android. Anki est
+                également disponible sur iOS (payant).
+              </li>
+              <li>
+                Dans Anki, cliquez sur <em>Importer</em>, puis sélectionnez
+                l'archive <strong>.apkg</strong> téléchargée. Continuer le
+                processus d'importation avec les options par défaut.
+              </li>
+              <li>
+                Activez la synchronisation AnkiWeb avec un compte pour retrouver
+                le deck sur mobile et conserver votre progression à jour.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer__icon">
+            <img src="../assets/media/logo.png" alt="Icon" />
+          </div>
+          <div class="footer__details">
+            <div class="footer__text">
+              CapECL - <span data-footer-year-range>2025-2026</span>
+            </div>
+          </div>
+          <nav class="footer__links">
+            <a class="footer__link" href="/terms/"
+              >À propos & Mentions légales</a
+            >
+          </nav>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
