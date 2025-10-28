@@ -54,6 +54,37 @@ body {
   color: var(--color-woodsmoke);
 }
 
+.password-gate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  z-index: 9999;
+  transition: opacity 180ms ease;
+}
+
+.password-gate--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.password-gate__input {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  padding: 12px 18px;
+  border: 1px solid var(--color-grey-border);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  color: var(--color-woodsmoke);
+  outline: none;
+}
+
+.password-gate__input:focus-visible {
+  border-color: var(--color-grey-contrast);
+}
+
 .background {
   min-height: 100vh;
   display: flex;

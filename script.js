@@ -2,6 +2,64 @@ document.addEventListener("DOMContentLoaded", () => {
   // Default height used for cards without a custom value.
   const DEFAULT_EXPANDED_HEIGHT = 220; // pixels
 
+  const PASSWORD = "2025";
+  const STORAGE_KEY = "capecl:password-unlocked";
+
+  // Guard the interface behind a simple client-side password.
+  const passwordGate = document.querySelector("[data-password-gate]");
+  if (passwordGate) {
+    const passwordInput = passwordGate.querySelector(".password-gate__input");
+    let hasStorage = true;
+    let unlocked = false;
+
+    try {
+      unlocked = window.localStorage.getItem(STORAGE_KEY) === "true";
+    } catch (error) {
+      hasStorage = false;
+    }
+
+    if (unlocked) {
+      passwordGate.remove();
+      // Skip further setup if we have nothing to display.
+    } else {
+      const completeUnlock = () => {
+        if (hasStorage) {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, "true");
+          } catch (error) {
+            // Ignore storage failures and still unlock.
+          }
+        }
+
+        passwordGate.classList.add("password-gate--hidden");
+        window.setTimeout(() => {
+          passwordGate.remove();
+        }, 200);
+      };
+
+      if (passwordInput) {
+        passwordInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            if (passwordInput.value === PASSWORD) {
+              completeUnlock();
+            } else {
+              passwordInput.value = "";
+            }
+          }
+        });
+
+        passwordInput.addEventListener("input", () => {
+          if (passwordInput.value === PASSWORD) {
+            completeUnlock();
+          }
+        });
+
+        passwordInput.focus();
+      }
+    }
+  }
+
   const expandableCards = document.querySelectorAll(".expandable-card");
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
