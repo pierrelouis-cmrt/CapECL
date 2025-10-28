@@ -1,68 +1,148 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Default height used for cards without a custom value.
   const DEFAULT_EXPANDED_HEIGHT = 220; // pixels
 
   const PASSWORD = "2025";
   const STORAGE_KEY = "capecl:password-unlocked";
 
-  // Guard the interface behind a simple client-side password.
+  const siteRoot = document.querySelector("[data-site-root]");
   const passwordGate = document.querySelector("[data-password-gate]");
-  if (passwordGate) {
-    const passwordInput = passwordGate.querySelector(".password-gate__input");
-    let hasStorage = true;
-    let unlocked = false;
+  const passwordInput = passwordGate?.querySelector(".password-gate__input");
 
-    try {
-      unlocked = window.localStorage.getItem(STORAGE_KEY) === "true";
-    } catch (error) {
-      hasStorage = false;
+  // ==== Scroll lock helpers (robust on iOS/desktop) ====
+  let scrollYBeforeLock = 0;
+
+  const lockPage = () => {
+    // Hide & inert everything behind the overlay
+    if (siteRoot) {
+      siteRoot.setAttribute("aria-hidden", "true");
+      try {
+        siteRoot.inert = true; // modern browsers
+      } catch (_) {}
     }
 
-    if (unlocked) {
-      passwordGate.remove();
-      // Skip further setup if we have nothing to display.
-    } else {
-      const completeUnlock = () => {
-        if (hasStorage) {
-          try {
-            window.localStorage.setItem(STORAGE_KEY, "true");
-          } catch (error) {
-            // Ignore storage failures and still unlock.
-          }
-        }
+    // Hard scroll lock (iOS-safe)
+    scrollYBeforeLock = window.scrollY || window.pageYOffset || 0;
+    document.body.classList.add("body--password-gate-active");
+    document.body.style.top = `-${scrollYBeforeLock}px`;
 
-        passwordGate.classList.add("password-gate--hidden");
-        window.setTimeout(() => {
-          passwordGate.remove();
-        }, 200);
-      };
+    // Trap focus inside the overlay
+    document.addEventListener("focusin", focusTrap, true);
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    document.addEventListener("wheel", preventScroll, { passive: false });
+  };
 
-      if (passwordInput) {
-        passwordInput.addEventListener("keydown", (event) => {
-          if (event.key === "Enter") {
-            event.preventDefault();
-            if (passwordInput.value === PASSWORD) {
-              completeUnlock();
-            } else {
-              passwordInput.value = "";
-            }
-          }
-        });
-
-        passwordInput.addEventListener("input", () => {
-          if (passwordInput.value === PASSWORD) {
-            completeUnlock();
-          }
-        });
-
-        passwordInput.focus();
-      }
+  const unlockPage = () => {
+    if (siteRoot) {
+      siteRoot.removeAttribute("aria-hidden");
+      try {
+        siteRoot.inert = false;
+      } catch (_) {}
     }
+
+    document.body.classList.remove("body--password-gate-active");
+    document.body.style.top = "";
+    window.scrollTo(0, scrollYBeforeLock);
+
+    document.removeEventListener("focusin", focusTrap, true);
+    document.removeEventListener("touchmove", preventScroll, {
+      passive: false,
+    });
+    document.removeEventListener("wheel", preventScroll, { passive: false });
+  };
+
+  const preventScroll = (e) => {
+    // Block all page scroll/zoom gestures while gate is active
+    if (
+      !passwordGate ||
+      passwordGate.classList.contains("password-gate--hidden")
+    )
+      return;
+    e.preventDefault();
+  };
+
+  const focusTrap = (e) => {
+    if (
+      !passwordGate ||
+      passwordGate.classList.contains("password-gate--hidden")
+    )
+      return;
+    if (!passwordGate.contains(e.target)) {
+      e.stopPropagation();
+      passwordInput?.focus();
+    }
+  };
+
+  // ==== Gate boot ====
+  let hasStorage = true;
+  let unlocked = false;
+
+  try {
+    unlocked = window.localStorage.getItem(STORAGE_KEY) === "true";
+  } catch (_) {
+    hasStorage = false;
   }
 
+  // Remove early lock class when known
+  document.documentElement.classList.remove("pg-init");
+  if (!unlocked) {
+    document.documentElement.classList.add("pg-lock");
+    lockPage();
+  } else {
+    document.documentElement.classList.remove("pg-lock");
+    passwordGate?.remove();
+  }
+
+  const completeUnlock = () => {
+    if (hasStorage) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, "true");
+      } catch (_) {}
+    }
+
+    // Fade overlay out, then remove and unlock page
+    passwordGate?.classList.add("password-gate--hidden");
+    window.setTimeout(() => {
+      passwordGate?.remove();
+      document.documentElement.classList.remove("pg-lock");
+      unlockPage();
+    }, 200);
+  };
+
+  // Input interactions
+  if (passwordInput && !unlocked) {
+    // Keep focus inside the gate
+    passwordGate.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault();
+        passwordInput.focus();
+      }
+    });
+
+    passwordInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (passwordInput.value === PASSWORD) {
+          completeUnlock();
+        } else {
+          passwordInput.value = "";
+        }
+      }
+    });
+
+    passwordInput.addEventListener("input", () => {
+      if (passwordInput.value === PASSWORD) {
+        completeUnlock();
+      }
+    });
+
+    // Initial focus
+    passwordInput.focus();
+  }
+
+  // ===== Expandable cards (unchanged logic) =====
   const expandableCards = document.querySelectorAll(".expandable-card");
   const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
+    "(prefers-reduced-motion: reduce)"
   ).matches;
 
   expandableCards.forEach((card) => {
@@ -71,12 +151,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const plusIcon = card.querySelector(".expandable-card__icon--plus");
     const minusIcon = card.querySelector(".expandable-card__icon--minus");
 
-    if (!toggle || !content || !plusIcon || !minusIcon) {
-      return;
-    }
+    if (!toggle || !content || !plusIcon || !minusIcon) return;
 
-    const interactiveSelector =
-      "a, button, input, select, textarea, label";
+    const interactiveSelector = "a, button, input, select, textarea, label";
 
     plusIcon.style.position = "absolute";
     minusIcon.style.position = "absolute";
@@ -93,10 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resolveExpandedHeight = () => {
       const customHeight = Number.parseFloat(card.dataset.expandedHeight || "");
-      if (Number.isFinite(customHeight) && customHeight > 0) {
-        return customHeight;
-      }
-      return DEFAULT_EXPANDED_HEIGHT;
+      return Number.isFinite(customHeight) && customHeight > 0
+        ? customHeight
+        : DEFAULT_EXPANDED_HEIGHT;
     };
 
     const refreshIconState = (expanded) => {
@@ -177,25 +253,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     card.addEventListener("click", (event) => {
-      if (event.target.closest(interactiveSelector)) {
-        return;
-      }
+      if (event.target.closest(interactiveSelector)) return;
       toggle.click();
     });
 
     content.addEventListener("transitionend", (event) => {
-      if (event.propertyName !== "height") {
-        return;
-      }
-
+      if (event.propertyName !== "height") return;
       if (toggle.getAttribute("aria-expanded") === "false") {
         clearExpandedStyles();
       }
-
       isAnimating = false;
     });
   });
 
+  // Footer year
   const footerYearRange = document.querySelector("[data-footer-year-range]");
   if (footerYearRange) {
     const now = new Date();

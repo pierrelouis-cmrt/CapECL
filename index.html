@@ -1,8 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="pg-init">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fill iOS Safari bars and use safe areas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
     <title>CapECL</title>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -10,6 +18,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="CapECL" />
     <link rel="manifest" href="/site.webmanifest" />
+
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link
@@ -23,18 +32,43 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("capecl:password-unlocked") !== "true") {
+            document.documentElement.classList.add("pg-lock");
+          }
+        } catch (_) {
+          document.documentElement.classList.add("pg-lock");
+        }
+      })();
+    </script>
   </head>
   <body>
-    <div class="password-gate" data-password-gate>
+    <!-- Password Overlay -->
+    <div
+      class="password-gate"
+      data-password-gate
+      role="dialog"
+      aria-modal="true"
+      aria-label="Entrer le mot de passe pour accéder au site"
+    >
       <input
         class="password-gate__input"
         type="password"
         inputmode="numeric"
         aria-label="Mot de passe"
         autocomplete="one-time-code"
+        enterkeyhint="go"
+        autocapitalize="off"
+        autocorrect="off"
+        pattern="[0-9]*"
       />
     </div>
-    <div class="background">
+
+    <!-- Everything below becomes inert/hidden while gate is active -->
+    <div class="background" data-site-root>
       <main class="content">
         <section class="hero">
           <h1 class="hero__heading">
@@ -43,6 +77,7 @@
             >
             <span class="hero__line hero__line--secondary"></span>
           </h1>
+
           <div class="hero__description">
             <p>
               <svg
@@ -58,9 +93,10 @@
                 class="lucide lucide-corner-down-right-icon lucide-corner-down-right"
               >
                 <path d="m15 10 5 5-5 5" />
-                <path d="M4 4v7a4 4 0 0 0 4 4h12" /></svg
-              ><span class="hero__description-text"
-                >Le site par et pour les étudiants de la formation CapECL.
+                <path d="M4 4v7a4 4 0 0 0 4 4h12" />
+              </svg>
+              <span class="hero__description-text">
+                Le site par et pour les étudiants de la formation CapECL.
               </span>
             </p>
           </div>
@@ -72,8 +108,8 @@
           <h2 class="section__title">Outils</h2>
           <ul class="icon-list">
             <li class="icon-list__item">
-              <span class="icon-list__icon" aria-hidden="true"
-                ><svg
+              <span class="icon-list__icon" aria-hidden="true">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -119,6 +155,7 @@
                 </a>
               </div>
             </li>
+
             <li class="icon-list__item">
               <span class="icon-list__icon" aria-hidden="true">
                 <svg
