@@ -227,13 +227,24 @@ body.body--password-gate-active [data-site-root] {
 }
 
 .hero__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--color-grey-mid);
   text-decoration: none;
+  font-size: var(--font-size-body-xs);
+  margin-bottom: var(--spacing-xs);
+  transition: color 0.2s ease;
 }
 
-.hero__back-link:hover,
-.hero__back-link:focus-visible {
+.hero__back-link:hover {
   text-decoration: underline;
+}
+
+.hero__back-link svg {
+  width: 16px;
+  height: 16px;
+  transform: translateY(-1.5px);
 }
 
 .font-preview {
