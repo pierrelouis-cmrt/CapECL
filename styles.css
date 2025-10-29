@@ -240,6 +240,7 @@ body.body--password-gate-active [data-site-root] {
 
 .hero__back-link:hover {
   text-decoration: underline;
+  color: var(--color-grey-contrast);
 }
 
 .hero__back-link svg {
@@ -775,7 +776,7 @@ body.body--password-gate-active [data-site-root] {
     --color-grey-faint: rgba(240, 240, 240, 0.44);
     --color-card-bg: #1a1a1a;
     --color-divider: rgba(255, 255, 255, 0.15);
-    --color-accent: #c73030;
+    --color-accent: #cf4949;
     --color-accent-muted: #8b4545;
     --color-accent-hover: #9b5050;
   }
