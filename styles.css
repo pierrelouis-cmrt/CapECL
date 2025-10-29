@@ -9,7 +9,8 @@
   --color-card-bg: #f9f9f9;
   --color-divider: rgba(0, 0, 0, 0.2);
   --color-accent: #d22c2c;
-  --color-accent-muted: rgba(210, 44, 44, 0.5);
+  --color-accent-muted: #f5a0a0;
+  --color-accent-hover: #f08080;
 
   --font-family-base: "Geist", sans-serif;
   --font-family-mono: "Geist Mono", monospace;
@@ -400,7 +401,7 @@ body.body--password-gate-active [data-site-root] {
 }
 
 .icon-list__item:has(.icon-list__link:hover) .icon-list__icon {
-  color: var(--color-accent-muted);
+  color: var(--color-accent-hover);
 }
 
 .icon-list__external-icon {
@@ -720,7 +721,7 @@ body.body--password-gate-active [data-site-root] {
 .post a {
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid rgba(14, 14, 16, 0.12);
+  border-bottom: 1px solid var(--color-grey-border);
 }
 .post a:hover,
 .post a:focus-visible {
@@ -759,5 +760,53 @@ body.body--password-gate-active [data-site-root] {
   }
   .footer__links {
     margin-left: 0;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-white: #0e0e10;
+    --color-woodsmoke: #f0f0f0;
+    --color-grey-mid: #9a9a9a;
+    --color-grey-contrast: #d0d0d0;
+    --color-grey-muted: #707070;
+    --color-grey-border: #2a2a2a;
+    --color-grey-faint: rgba(240, 240, 240, 0.44);
+    --color-card-bg: #1a1a1a;
+    --color-divider: rgba(255, 255, 255, 0.15);
+    --color-accent: #c73030;
+    --color-accent-muted: #8b4545;
+    --color-accent-hover: #9b5050;
+  }
+
+  html,
+  body {
+    color-scheme: dark;
+  }
+
+  ::selection {
+    background-color: rgba(199, 48, 48, 0.35);
+  }
+
+  .password-gate__input {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .font-preview__item {
+    background: rgba(240, 240, 240, 0.04);
+  }
+
+  .font-preview__label {
+    color: rgba(240, 240, 240, 0.44);
+  }
+
+  .post__callout {
+    background: rgba(199, 48, 48, 0.08);
+  }
+
+  .resource-button:hover,
+  .resource-button:focus-visible {
+    background-color: rgba(199, 48, 48, 0.12);
   }
 }
