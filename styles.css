@@ -209,6 +209,10 @@ body.body--password-gate-active [data-site-root] {
   margin-left: 8px;
 }
 
+.hero__description--back-link {
+  margin-left: 0px !important;
+}
+
 .hero__description p {
   display: grid;
   grid-template-columns: 18px 1fr;
