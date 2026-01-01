@@ -564,7 +564,7 @@ body.body--password-gate-active [data-site-root] {
 
 .expandable-card__content--expanded .expandable-card__content-inner {
   padding-top: 12px;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   margin-top: 8px;
   border-top-color: var(--color-grey-border);
 }
@@ -580,6 +580,10 @@ body.body--password-gate-active [data-site-root] {
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
   color: var(--color-grey-contrast);
+}
+
+.expandable-card__list:last-child {
+  margin-bottom: 0;
 }
 
 .expandable-card__list a {

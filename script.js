@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const DEFAULT_EXPANDED_HEIGHT = 220; // pixels
-
   const PASSWORD = "2025";
   const STORAGE_KEY = "capecl:password-unlocked";
 
@@ -139,11 +137,40 @@ document.addEventListener("DOMContentLoaded", () => {
     passwordInput.focus();
   }
 
-  // ===== Expandable cards (unchanged logic) =====
+  // ===== Expandable cards (Dynamic Height) =====
   const expandableCards = document.querySelectorAll(".expandable-card");
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+
+  // Helper: Calculate the height of the content as if it were expanded.
+  // We use a clone to avoid messing with the visible element's state/transitions.
+  const calculateExpandedHeight = (card, content) => {
+    // Clone the content element
+    const clone = content.cloneNode(true);
+    
+    // Set styles to make it invisible but measurable, and force the expanded state
+    clone.style.cssText = `
+      position: absolute;
+      visibility: hidden;
+      height: auto;
+      width: ${content.offsetWidth}px;
+      transition: none !important;
+      overflow: visible;
+    `;
+    
+    // Ensure the clone has the expanded class to include padding/margin/border
+    clone.classList.add("expandable-card__content--expanded");
+    
+    // Append to the card so it inherits font styles, etc.
+    card.appendChild(clone);
+    
+    const height = clone.scrollHeight;
+    
+    // Cleanup
+    clone.remove();
+    return height;
+  };
 
   expandableCards.forEach((card) => {
     const toggle = card.querySelector(".expandable-card__toggle");
@@ -167,13 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
     content.style.opacity = "0";
 
     let isAnimating = false;
-
-    const resolveExpandedHeight = () => {
-      const customHeight = Number.parseFloat(card.dataset.expandedHeight || "");
-      return Number.isFinite(customHeight) && customHeight > 0
-        ? customHeight
-        : DEFAULT_EXPANDED_HEIGHT;
-    };
 
     const refreshIconState = (expanded) => {
       if (expanded) {
@@ -203,9 +223,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       toggle.setAttribute("aria-expanded", "true");
       refreshIconState(true);
-      applyExpandedStyles();
+      
+      // Calculate target height BEFORE applying styles to the real element
+      const targetHeight = calculateExpandedHeight(card, content);
 
-      const targetHeight = resolveExpandedHeight();
+      // Now apply styles to trigger inner animations
+      applyExpandedStyles();
 
       if (prefersReducedMotion) {
         content.style.opacity = "1";
@@ -215,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       content.style.opacity = "1";
-      content.style.height = "0px";
-      void content.offsetHeight;
+      content.style.height = "0px"; // Ensure start at 0
+      void content.offsetHeight; // Force reflow
       content.style.height = `${targetHeight}px`;
     };
 
@@ -227,7 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.setAttribute("aria-expanded", "false");
       refreshIconState(false);
 
-      const targetHeight = resolveExpandedHeight();
+      // Lock current height explicitly before collapsing
+      // This handles cases where content size changed (e.g. resize) since opening
+      const currentHeight = content.scrollHeight;
 
       if (prefersReducedMotion) {
         content.style.height = "0px";
@@ -237,8 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      content.style.height = `${targetHeight}px`;
-      void content.offsetHeight;
+      // Start from current pixel height
+      content.style.height = `${currentHeight}px`;
+      void content.offsetHeight; // Force reflow
+      
+      // Animate to 0
       content.style.opacity = "0";
       content.style.height = "0px";
     };
@@ -263,6 +291,32 @@ document.addEventListener("DOMContentLoaded", () => {
         clearExpandedStyles();
       }
       isAnimating = false;
+    });
+  });
+
+  // Handle window resize to update heights of expanded cards
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    if (resizeTimeout) cancelAnimationFrame(resizeTimeout);
+    resizeTimeout = requestAnimationFrame(() => {
+      expandableCards.forEach((card) => {
+        const toggle = card.querySelector(".expandable-card__toggle");
+        const content = card.querySelector(".expandable-card__content");
+        
+        // Only update if currently expanded
+        if (toggle && content && toggle.getAttribute("aria-expanded") === "true") {
+          // Snap to new auto height without animation
+          const originalTransition = content.style.transition;
+          content.style.transition = "none";
+          content.style.height = "auto";
+          
+          const newHeight = content.scrollHeight;
+          
+          content.style.height = `${newHeight}px`;
+          void content.offsetHeight; // Force reflow
+          content.style.transition = originalTransition;
+        }
+      });
     });
   });
 
