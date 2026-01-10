@@ -473,6 +473,8 @@ body.body--password-gate-active [data-site-root] {
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-xxs);
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .expandable-card__details {
@@ -615,15 +617,15 @@ body.body--password-gate-active [data-site-root] {
 }
 
 .footer__icon {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  aspect-ratio: 1;
   flex-shrink: 0;
 }
 
 .footer__icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   display: block;
 }
 
