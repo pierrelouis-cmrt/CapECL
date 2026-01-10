@@ -193,8 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
     content.style.height = "0px";
     content.style.opacity = "0";
 
-    let isAnimating = false;
-
     const refreshIconState = (expanded) => {
       if (expanded) {
         plusIcon.style.transform = "rotate(90deg)";
@@ -218,47 +216,42 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const open = () => {
-      if (isAnimating) return;
-      isAnimating = true;
-
       toggle.setAttribute("aria-expanded", "true");
       refreshIconState(true);
       
       // Calculate target height BEFORE applying styles to the real element
       const targetHeight = calculateExpandedHeight(card, content);
 
-      // Now apply styles to trigger inner animations
+      // Lock current visual height to start animation from wherever we are
+      const startHeight = content.offsetHeight;
+      
+      // Now apply styles to trigger inner animations (padding, etc.)
       applyExpandedStyles();
 
       if (prefersReducedMotion) {
         content.style.opacity = "1";
         content.style.height = `${targetHeight}px`;
-        isAnimating = false;
         return;
       }
 
       content.style.opacity = "1";
-      content.style.height = "0px"; // Ensure start at 0
+      content.style.height = `${startHeight}px`; // Start from current height
       void content.offsetHeight; // Force reflow
       content.style.height = `${targetHeight}px`;
     };
 
     const close = () => {
-      if (isAnimating) return;
-      isAnimating = true;
-
       toggle.setAttribute("aria-expanded", "false");
       refreshIconState(false);
 
       // Lock current height explicitly before collapsing
-      // This handles cases where content size changed (e.g. resize) since opening
-      const currentHeight = content.scrollHeight;
+      // This handles cases where content size changed or animation was interrupted
+      const currentHeight = content.offsetHeight;
 
       if (prefersReducedMotion) {
         content.style.height = "0px";
         content.style.opacity = "0";
         clearExpandedStyles();
-        isAnimating = false;
         return;
       }
 
@@ -290,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (toggle.getAttribute("aria-expanded") === "false") {
         clearExpandedStyles();
       }
-      isAnimating = false;
     });
   });
 
