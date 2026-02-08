@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr" class="pg-init">
+<!doctype html>
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <!-- Fill iOS Safari bars and use safe areas -->
@@ -40,43 +40,9 @@
     ></script>
 
     <link rel="stylesheet" href="styles.css" />
-
-    <script>
-      (function () {
-        try {
-          if (localStorage.getItem("capecl:password-unlocked") !== "true") {
-            document.documentElement.classList.add("pg-lock");
-          }
-        } catch (_) {
-          document.documentElement.classList.add("pg-lock");
-        }
-      })();
-    </script>
   </head>
   <body>
-    <!-- Password Overlay -->
-    <div
-      class="password-gate"
-      data-password-gate
-      role="dialog"
-      aria-modal="true"
-      aria-label="Entrer le mot de passe pour accéder au site"
-    >
-      <input
-        class="password-gate__input"
-        type="password"
-        inputmode="numeric"
-        aria-label="Mot de passe"
-        autocomplete="one-time-code"
-        enterkeyhint="go"
-        autocapitalize="off"
-        autocorrect="off"
-        pattern="[0-9]*"
-      />
-    </div>
-
-    <!-- Everything below becomes inert/hidden while gate is active -->
-    <div class="background" data-site-root>
+    <div class="background">
       <main class="content">
         <section class="hero">
           <h1 class="hero__heading">
@@ -514,12 +480,12 @@
                         >Formulaire Maths & Physique PCSI+PSI</a
                       >
                     </li>
-                    <li>
+                    <!--<li>
                       <a
                         href="https://unr-ra-scholarvox-com.ec-lyon.idm.oclc.org/catalog/book/docid/88912529?searchterm=24%20jours"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Maths : de la sup à la spé en 24 jours</a
+                        >Maths : 24 jours pour préparer son entrée en spé</a
                       >
                     </li>
                     <li>
@@ -529,7 +495,7 @@
                         rel="noopener noreferrer"
                         >Physique : 24 jours pour préparer son entrée en spé</a
                       >
-                    </li>
+                    </li>-->
                   </ul>
                 </div>
               </div>

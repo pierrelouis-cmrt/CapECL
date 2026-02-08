@@ -60,86 +60,6 @@ body {
   color: var(--color-woodsmoke);
 }
 
-/* ===== Hard lock states ===== */
-/* Early, before JS boot (set on <html>) */
-.pg-lock body {
-  overflow: hidden !important;
-  position: fixed !important;
-  width: 100%;
-  top: 0;
-}
-.pg-lock [data-site-root] {
-  visibility: hidden !important;
-  pointer-events: none !important;
-  user-select: none !important;
-}
-
-/* Runtime class on <body> while overlay is active */
-body.body--password-gate-active {
-  overflow: hidden !important;
-  overscroll-behavior: none !important;
-  touch-action: none !important;
-  position: fixed !important; /* iOS scroll lock */
-  width: 100%;
-}
-
-/* Hide & inert the site behind */
-body.body--password-gate-active [data-site-root] {
-  visibility: hidden !important;
-  pointer-events: none !important;
-  user-select: none !important;
-}
-
-/* ===== Overlay ===== */
-.password-gate {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  width: 100vw;
-  min-height: 100vh;
-  min-height: 100dvh;
-  height: 100vh;
-  height: 100dvh;
-  padding: 24px;
-  padding-top: calc(24px + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  padding-left: calc(24px + env(safe-area-inset-left, 0px));
-  padding-right: calc(24px + env(safe-area-inset-right, 0px));
-  overflow: hidden; /* no internal scroll; it's just an input */
-  background-color: var(--color-white); /* fills Safari UI area */
-  z-index: 9999;
-  transition: opacity 180ms ease, visibility 180ms ease;
-  visibility: visible;
-}
-
-.password-gate--hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.password-gate__input {
-  font-family: var(--font-family-base);
-  font-size: clamp(18px, 4vw, 22px);
-  line-height: 1.3;
-  width: 100%;
-  max-width: 320px;
-  padding: 14px 20px;
-  border: 1px solid var(--color-grey-border);
-  border-radius: 12px;
-  background-color: var(--color-white);
-  color: var(--color-woodsmoke);
-  box-shadow: 0 12px 40px rgba(14, 14, 16, 0.08);
-  text-align: center;
-  appearance: none;
-  outline: none;
-}
-
-.password-gate__input:focus-visible {
-  border-color: var(--color-grey-contrast);
-}
-
 /* ===== Page background ===== */
 .background {
   min-height: 100vh;
@@ -798,10 +718,6 @@ body.body--password-gate-active [data-site-root] {
 
   ::selection {
     background-color: rgba(199, 48, 48, 0.35);
-  }
-
-  .password-gate__input {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   }
 
   .font-preview__item {
