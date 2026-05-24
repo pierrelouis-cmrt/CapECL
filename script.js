@@ -1,9 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Expandable cards (Dynamic Height) =====
-  const expandableCards = document.querySelectorAll(".expandable-card");
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
+
+  // ===== Page transitions =====
+  document.documentElement.classList.add("page-ready");
+
+  if (!prefersReducedMotion) {
+    const isInternalPageLink = (link) => {
+      if (!link || link.target || link.hasAttribute("download")) return false;
+
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) return false;
+      if (url.pathname === window.location.pathname && url.hash) return false;
+
+      return true;
+    };
+
+    document.addEventListener("click", (event) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const link = event.target.closest("a[href]");
+      if (!isInternalPageLink(link)) return;
+
+      event.preventDefault();
+      window.requestAnimationFrame(() => {
+        document.documentElement.classList.add("page-leaving");
+      });
+      window.setTimeout(() => {
+        window.location.href = link.href;
+      }, 260);
+    });
+
+    window.addEventListener("pageshow", () => {
+      document.documentElement.classList.remove("page-leaving");
+    });
+  }
+
+  // ===== Expandable cards (Dynamic Height) =====
+  const expandableCards = document.querySelectorAll(".expandable-card");
 
   // Helper: Calculate the height of the content as if it were expanded.
   // We use a clone to avoid messing with the visible element's state/transitions.
