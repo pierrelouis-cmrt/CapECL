@@ -47,14 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     plusIcon.style.position = "absolute";
     minusIcon.style.position = "absolute";
     minusIcon.hidden = false;
-    plusIcon.style.opacity = "1";
-    plusIcon.style.transform = "rotate(0deg)";
-    minusIcon.style.opacity = "0";
-    minusIcon.style.transform = "rotate(-90deg)";
-
-    content.style.height = "0px";
-    content.style.opacity = "0";
-
     const refreshIconState = (expanded) => {
       if (expanded) {
         plusIcon.style.transform = "rotate(90deg)";
@@ -76,6 +68,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearExpandedStyles = () => {
       content.classList.remove("expandable-card__content--expanded");
     };
+
+    const isInitiallyExpanded = toggle.getAttribute("aria-expanded") === "true";
+    refreshIconState(isInitiallyExpanded);
+
+    if (isInitiallyExpanded) {
+      applyExpandedStyles();
+      content.style.height = `${calculateExpandedHeight(card, content)}px`;
+      content.style.opacity = "1";
+    } else {
+      content.style.height = "0px";
+      content.style.opacity = "0";
+    }
 
     const open = () => {
       toggle.setAttribute("aria-expanded", "true");
