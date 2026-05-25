@@ -211,18 +211,25 @@ a {
   font-size: var(--font-size-body) !important;
 }
 
-.hero__description {
+/* .hero__description {
   margin-left: 8px;
-}
+} */
 
 .hero__description--back-link {
   margin-left: 0px !important;
 }
 
+/* If I want the arrow svg right before the subtitle back:
 .hero__description p {
   display: grid;
   grid-template-columns: 18px 1fr;
   column-gap: 8px;
+  align-items: start;
+  margin: 0 auto;
+} */
+
+.hero__description p {
+  display: block;
   align-items: start;
   margin: 0 auto;
 }
