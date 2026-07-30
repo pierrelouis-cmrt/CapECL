@@ -1,0 +1,13 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Editor settings
+.idea/
+.vscode/
+
+# Local dependencies and environment files
+node_modules/
+.env
+.env.*
+!.env.example
