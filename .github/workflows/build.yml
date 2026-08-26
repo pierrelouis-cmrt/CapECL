@@ -1,0 +1,78 @@
+name: Build static site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-branch
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build fingerprinted site
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          output_dir="_site"
+          css_hash="$(sha256sum styles.css | cut -c1-8)"
+          js_hash="$(sha256sum script.js | cut -c1-8)"
+
+          mkdir "$output_dir"
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude="$output_dir/" \
+            ./ "$output_dir/"
+
+          find "$output_dir" -maxdepth 1 -type f -name 'styles.*.css' -delete
+          find "$output_dir" -maxdepth 1 -type f -name 'script.*.js' -delete
+
+          mv "$output_dir/styles.css" "$output_dir/styles.${css_hash}.css"
+          mv "$output_dir/script.js" "$output_dir/script.${js_hash}.js"
+
+          while IFS= read -r -d '' html_file; do
+            sed -i \
+              -e "s|href=\"/styles.css\"|href=\"/styles.${css_hash}.css\"|g" \
+              -e "s|href=\"styles.css\"|href=\"styles.${css_hash}.css\"|g" \
+              -e "s|src=\"/script.js\"|src=\"/script.${js_hash}.js\"|g" \
+              -e "s|src=\"script.js\"|src=\"script.${js_hash}.js\"|g" \
+              "$html_file"
+          done < <(find "$output_dir" -type f -name '*.html' -print0)
+
+          touch "$output_dir/.nojekyll"
+
+          if grep -RInE '(href=\"/?styles\.css\"|src=\"/?script\.js\")' "$output_dir" --include='*.html'; then
+            echo 'Unfingerprinted local asset reference found.' >&2
+            exit 1
+          fi
+
+      - name: Publish build branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cd _site
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "Build ${GITHUB_SHA}"
+          git branch -M build
+          git push --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            build
