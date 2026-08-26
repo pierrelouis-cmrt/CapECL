@@ -236,6 +236,18 @@ a {
   transition: color 0.2s ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .hero__back-link {
+    font-size: var(--font-size-body-sm);
+  }
+}
+
+@media (any-pointer: coarse) {
+  .hero__back-link {
+    font-size: var(--font-size-body);
+  }
+}
+
 @media (min-width: 641px) {
   .hero__back-link:hover {
     text-decoration: underline;
@@ -313,6 +325,10 @@ a {
   width: 98px;
   height: 1px;
   background-color: var(--color-grey-border);
+}
+
+.hero__description + .divider {
+  margin-top: 5px;
 }
 
 .section {
