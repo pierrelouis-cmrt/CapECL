@@ -1,50 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
+    "(prefers-reduced-motion: reduce)",
   ).matches;
-
-  // ===== Page transitions =====
-  document.documentElement.classList.add("page-ready");
-
-  if (!prefersReducedMotion) {
-    const isInternalPageLink = (link) => {
-      if (!link || link.target || link.hasAttribute("download")) return false;
-
-      const url = new URL(link.href, window.location.href);
-      if (url.origin !== window.location.origin) return false;
-      if (url.pathname === window.location.pathname && url.hash) return false;
-
-      return true;
-    };
-
-    document.addEventListener("click", (event) => {
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      ) {
-        return;
-      }
-
-      const link = event.target.closest("a[href]");
-      if (!isInternalPageLink(link)) return;
-
-      event.preventDefault();
-      window.requestAnimationFrame(() => {
-        document.documentElement.classList.add("page-leaving");
-      });
-      window.setTimeout(() => {
-        window.location.href = link.href;
-      }, 260);
-    });
-
-    window.addEventListener("pageshow", () => {
-      document.documentElement.classList.remove("page-leaving");
-    });
-  }
 
   // ===== Expandable cards (Dynamic Height) =====
   const expandableCards = document.querySelectorAll(".expandable-card");
@@ -54,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const calculateExpandedHeight = (card, content) => {
     // Clone the content element
     const clone = content.cloneNode(true);
-    
+
     // Set styles to make it invisible but measurable, and force the expanded state
     clone.style.cssText = `
       position: absolute;
@@ -64,15 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
       transition: none !important;
       overflow: visible;
     `;
-    
+
     // Ensure the clone has the expanded class to include padding/margin/border
     clone.classList.add("expandable-card__content--expanded");
-    
+
     // Append to the card so it inherits font styles, etc.
     card.appendChild(clone);
-    
+
     const height = clone.scrollHeight;
-    
+
     // Cleanup
     clone.remove();
     return height;
@@ -128,13 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const open = () => {
       toggle.setAttribute("aria-expanded", "true");
       refreshIconState(true);
-      
+
       // Calculate target height BEFORE applying styles to the real element
       const targetHeight = calculateExpandedHeight(card, content);
 
       // Lock current visual height to start animation from wherever we are
       const startHeight = content.offsetHeight;
-      
+
       // Now apply styles to trigger inner animations (padding, etc.)
       applyExpandedStyles();
 
@@ -168,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Start from current pixel height
       content.style.height = `${currentHeight}px`;
       void content.offsetHeight; // Force reflow
-      
+
       // Animate to 0
       content.style.opacity = "0";
       content.style.height = "0px";
@@ -204,16 +161,20 @@ document.addEventListener("DOMContentLoaded", () => {
       expandableCards.forEach((card) => {
         const toggle = card.querySelector(".expandable-card__toggle");
         const content = card.querySelector(".expandable-card__content");
-        
+
         // Only update if currently expanded
-        if (toggle && content && toggle.getAttribute("aria-expanded") === "true") {
+        if (
+          toggle &&
+          content &&
+          toggle.getAttribute("aria-expanded") === "true"
+        ) {
           // Snap to new auto height without animation
           const originalTransition = content.style.transition;
           content.style.transition = "none";
           content.style.height = "auto";
-          
+
           const newHeight = content.scrollHeight;
-          
+
           content.style.height = `${newHeight}px`;
           void content.offsetHeight; // Force reflow
           content.style.transition = originalTransition;
@@ -221,12 +182,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
-  // Footer year
-  const footerYearRange = document.querySelector("[data-footer-year-range]");
-  if (footerYearRange) {
-    const now = new Date();
-    const startYear = now.getFullYear();
-    footerYearRange.textContent = `${startYear}-${startYear + 1}`;
-  }
 });

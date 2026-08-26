@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "NATS";
+  src: url("/assets/font/NATS-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --color-white: #ffffff;
   --color-woodsmoke: #0e0e10;
@@ -8,13 +16,13 @@
   --color-grey-faint: rgba(14, 14, 16, 0.44);
   --color-card-bg: #f9f9f9;
   --color-divider: rgba(0, 0, 0, 0.2);
-  --color-accent: #d22c2c;
+  --color-accent: #b22133;
   --color-accent-muted: #f5a0a0;
   --color-accent-hover: #f08080;
 
   --font-family-base: "Geist", sans-serif;
   --font-family-mono: "Geist Mono", monospace;
-  --font-family-display: "Sentient", "Geist", sans-serif;
+  --font-family-display: "NATS", "Geist", sans-serif;
   --font-size-hero-large: 38.4px;
   --font-size-hero: 37.3px;
   --font-size-body: 17.4px;
@@ -24,7 +32,7 @@
   --font-size-footer: 13.6px;
   --font-size-card-title: 17.4px;
 
-  --line-height-hero: 40px;
+  --line-height-hero: 20px;
   --line-height-body: 28.8px;
   --line-height-section-title: 26px;
   --line-height-footer: 16.8px;
@@ -57,39 +65,6 @@ body {
   color-scheme: light;
 }
 
-html::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  width: 100%;
-  height: 1px;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-accent),
-    transparent
-  );
-  opacity: 0;
-  filter: drop-shadow(0 0 5px rgba(210, 44, 44, 0.26));
-  transform: translateX(-70%) scaleX(0.34);
-  transform-origin: center;
-  will-change: opacity, transform;
-}
-
-html.page-ready::before {
-  transition:
-    opacity 0.22s ease,
-    transform 0.52s var(--ease-page-enter);
-}
-
-html.page-leaving::before {
-  opacity: 0.62;
-  transform: translateX(52%) scaleX(0.5);
-}
-
 body {
   margin: 0;
   font-family: var(--font-family-base);
@@ -111,58 +86,13 @@ a {
   backface-visibility: hidden;
 }
 
-.page-ready .background {
-  animation: page-enter 0.48s var(--ease-page-enter) both;
-  will-change: opacity, transform, filter;
-}
-
-.page-leaving .background {
-  opacity: 0.48;
-  filter: blur(1px);
-  transform: translateY(7px) scale(0.998);
-  transition:
-    opacity 0.26s ease,
-    filter 0.26s ease,
-    transform 0.26s var(--ease-page-leave);
-}
-
-@keyframes page-enter {
-  from {
-    opacity: 0;
-    filter: blur(1.5px);
-    transform: translateY(10px) scale(0.998);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html::before {
-    display: none;
-  }
-
-  .page-ready .background {
-    animation: none;
-  }
-
-  .page-leaving .background {
-    opacity: 1;
-    filter: none;
-    transform: none;
-    transition: none;
-  }
-}
-
 @media (max-width: 480px) {
   .mobile-hidden {
     display: none !important;
   }
 }
 
-/* ===== Main Content (unchanged) ===== */
+/* ===== Main Content ===== */
 
 .content {
   display: flex;
@@ -182,11 +112,12 @@ a {
 .hero__heading {
   display: flex;
   flex-direction: column;
-  margin: 5px 0 0;
+  margin: 5px 0;
   gap: 0;
   color: var(--color-woodsmoke);
+  font-family: var(--font-family-display);
   font-weight: 400;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.03em !important;
 }
 
 .hero__line {
@@ -199,7 +130,6 @@ a {
   font-size: var(--font-size-hero-large);
   font-family: var(--font-family-display);
   font-weight: 500;
-  letter-spacing: -0.02em;
 }
 
 .hero__line--secondary {
@@ -208,25 +138,12 @@ a {
 
 .hero__line-accent {
   color: var(--color-accent);
-  font-size: var(--font-size-body) !important;
+  font-size: calc(var(--font-size-hero) / 1.5) !important;
 }
-
-/* .hero__description {
-  margin-left: 8px;
-} */
 
 .hero__description--back-link {
   margin-left: 0px !important;
 }
-
-/* If I want the arrow svg right before the subtitle back:
-.hero__description p {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  column-gap: 8px;
-  align-items: start;
-  margin: 0 auto;
-} */
 
 .hero__description p {
   display: block;
@@ -237,8 +154,7 @@ a {
 .hero__description svg {
   width: 18px;
   height: 18px;
-  grid-column: 1;
-  margin: 0;
+  transform: translateY(2px);
 }
 .hero__description-text {
   grid-column: 2;
@@ -301,7 +217,7 @@ a {
 .font-preview__sample {
   font-size: 34px;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--color-woodsmoke);
 }
 
@@ -330,6 +246,7 @@ a {
   width: 98px;
   height: 1px;
   background-color: var(--color-grey-border);
+  margin-top: 7px;
 }
 
 .section {

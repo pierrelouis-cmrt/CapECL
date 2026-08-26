@@ -2,7 +2,6 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <!-- Fill iOS Safari bars and use safe areas -->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -10,21 +9,22 @@
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
     <title>CapECL • Site Etudiant</title>
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="CapECL" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=sentient@400,500&display=swap"
-      rel="stylesheet"
+      rel="icon"
+      type="image/png"
+      href="/favicon-96x96.png?v=20260826"
+      sizes="96x96"
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260826" />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260826" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=20260826"
+    />
+    <meta name="apple-mobile-web-app-title" content="CapECL" />
+    <link rel="manifest" href="/site.webmanifest?v=20260826" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,18 +56,15 @@
             <p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="currentColor"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-corner-down-right-icon lucide-corner-down-right"
               >
-                <path d="m15 10 5 5-5 5" />
-                <path d="M4 4v7a4 4 0 0 0 4 4h12" />
+                <path
+                  d="m560-120-57-57 144-143H200v-480h80v400h367L503-544l56-57 241 241-240 240Z"
+                />
               </svg>
               <span class="hero__description-text">
                 Le site par et pour les étudiants de la formation CapECL.
@@ -264,7 +261,7 @@
                 <div class="icon-list__actions">
                   <a
                     class="resource-button"
-                    href="/anki"
+                    href="/anki/"
                     rel="noopener noreferrer"
                   >
                     Voir et télécharger
@@ -298,7 +295,7 @@
                 <div class="icon-list__actions">
                   <a
                     class="resource-button"
-                    href="/templates"
+                    href="/templates/"
                     rel="noopener noreferrer"
                   >
                     Choisir un modèle
@@ -388,20 +385,12 @@
                         >Gitlab 2A</a
                       >
                     </li>
-                    <!--<li>
-                      <a
-                        href="https://moodle.enise.fr/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >Moodle Enise (ancien moodle)</a
-                      >
-                    </li>-->
                     <li>
                       <a
                         href="https://pedagogie-ste.ec-lyon.fr/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Moodle (pédagogie-ste)</a
+                        >Moodle</a
                       >
                     </li>
                     <li>
@@ -523,7 +512,9 @@
                         href="https://unr-ra-scholarvox-com.ec-lyon.idm.oclc.org/catalog/book/docid/88971444?searchterm=Physique%20PCSI"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Ellipses <strong>Physique</strong> PCSI</a
+                        >Ellipses
+                        <strong>Physique</strong>
+                        PCSI</a
                       >
                     </li>
                     <li>
@@ -541,7 +532,9 @@
                         href="https://unr-ra-scholarvox-com.ec-lyon.idm.oclc.org/catalog/book/docid/88931380?searchterm=Math%C3%A9matiques%20PSI"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Ellipses <strong>Maths</strong> PSI/PSI*</a
+                        >Ellipses
+                        <strong>Maths</strong>
+                        PSI/PSI*</a
                       >
                     </li>
                     <li>
@@ -549,7 +542,9 @@
                         href="https://unr-ra-scholarvox-com.ec-lyon.idm.oclc.org/catalog/book/docid/88930918?searchterm=Physique%20PSI"
                         target="_blank"
                         rel="noopener noreferrer"
-                        >Ellipses <strong>Physique</strong> PSI/PSI*</a
+                        >Ellipses
+                        <strong>Physique</strong>
+                        PSI/PSI*</a
                       >
                     </li>
                   </ul>
@@ -587,10 +582,18 @@
 
         <footer class="footer">
           <div class="footer__icon">
-            <img src="assets/media/logo.png" alt="Icon" />
+            <img src="assets/media/icon.png" alt="Icon" />
           </div>
           <div class="footer__details">
-            <div class="footer__text">CapECL - <span>2025-2026</span></div>
+            <div class="footer__text">
+              CapECL -
+              <span
+                >©2025-
+                <script>
+                  document.write(new Date().getFullYear());
+                </script></span
+              >
+            </div>
           </div>
           <nav class="footer__links">
             <a class="footer__link" href="/terms/"
