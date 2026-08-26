@@ -122,7 +122,6 @@ a {
   letter-spacing: -0.03em !important;
 }
 
-/* Use the official lockup; only the .fr suffix remains live text. */
 .hero__heading--brand {
   align-self: flex-start;
   width: max-content;
@@ -683,6 +682,14 @@ a {
   line-height: var(--line-height-footer);
   color: var(--color-grey-faint);
   text-decoration: none;
+}
+
+.footer__button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 @media (min-width: 641px) {
