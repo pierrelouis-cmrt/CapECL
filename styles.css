@@ -247,7 +247,7 @@ a {
   }
 }
 
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .hero__back-link:hover {
     text-decoration: underline;
     color: var(--color-grey-contrast);
@@ -409,7 +409,7 @@ a {
   width: fit-content;
 }
 
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .icon-list__link:hover {
     & .icon-list__text,
     & .icon-list__external-icon {
@@ -452,7 +452,7 @@ a {
     background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .resource-button:hover {
     color: var(--color-accent);
     border-color: var(--color-accent);
@@ -617,7 +617,7 @@ a {
   text-decoration: none;
 }
 
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .expandable-card__list a:hover {
     text-decoration: underline;
   }
@@ -692,7 +692,7 @@ a {
   cursor: pointer;
 }
 
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .footer__link:hover {
     text-decoration: underline;
     color: var(--color-grey-contrast);
@@ -783,7 +783,7 @@ a {
   text-decoration-thickness: 1px;
   border-bottom: 0;
 }
-@media (min-width: 641px) {
+@media (any-hover: hover) {
   .post a:hover {
     text-decoration-color: var(--color-accent);
   }
@@ -992,7 +992,7 @@ a {
     background: rgba(199, 48, 48, 0.08);
   }
 
-  @media (min-width: 641px) {
+  @media (any-hover: hover) {
     .resource-button:hover {
       background-color: rgba(199, 48, 48, 0.12);
     }
